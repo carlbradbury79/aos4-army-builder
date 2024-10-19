@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
-import { Unit } from "@/types";
+import { Hero as HeroType } from "@/types";
 
 const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
   regimentId,
@@ -42,7 +42,7 @@ const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
             onChange={(e) => setSelectedHeroId(Number(e.target.value))}
           >
             <option value="">Select Hero</option>
-            {availableHeroes.map((hero: Unit) => (
+            {availableHeroes.map((hero: HeroType) => (
               <option key={hero.id} value={hero.id}>
                 {hero.name}
               </option>
