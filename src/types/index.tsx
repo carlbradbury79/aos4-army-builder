@@ -1,5 +1,5 @@
 export type Unit = {
-  id: number;
+  id: string;
   name: string;
 };
 
@@ -26,16 +26,16 @@ export type Regiment = {
 };
 
 export type Army = {
-  regiments: Regiment[];
-  additioanlRegiments?: Unit[];
-  battleTrait?: string;
-  commandAbility?: string;
   armyName?: string;
+  battleFormation?: string;
+  heroicTrait?: string;
+  spellLore?: string;
+  prayerLore?: string;
+  manifestationLore?: string;
+  regiments: Regiment[];
+  auxiliaryUnits?: Unit[];
   armyPoints?: number;
   numberOfWounds?: number;
-  spells?: string;
-  prayer?: string;
-  endlessSpells?: string;
 };
 
 export type ArmyContextType = {
@@ -46,11 +46,12 @@ export type ArmyContextType = {
   removeHero: (regimentId: number) => void;
   setGeneral: (regimentId: number) => void;
   addUnit: (regimentId: number, unit: Unit) => void;
-  removeUnit: (regimentId: number, unitId: number) => void;
+  removeUnit: (regimentId: number, unitId: string) => void;
   getAvailableHeroes: () => Hero[];
   getAvailableUnits: () => Unit[];
   isGeneralSet: boolean;
   saveArmyToLocalStorage: () => void;
   loadArmyFromLocalStorage: () => void;
+  faction: string;
   setFaction: (faction: string) => void;
 };

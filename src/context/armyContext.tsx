@@ -103,7 +103,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const removeUnit = (regimentId: number, unitId: number) => {
+  const removeUnit = (regimentId: number, unitId: string) => {
     setArmy({
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
@@ -143,6 +143,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isGeneralSet,
         saveArmyToLocalStorage,
         loadArmyFromLocalStorage,
+        faction,
         setFaction,
       }}
     >
