@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, ReactNode, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { ArmyContextType, Regiment, Army, Hero, Unit } from "@/types";
 import { skavenData } from "@/battletomeData/skaven/skaven";
 import { keywords } from "@/constants";
@@ -92,10 +93,11 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const addUnit = (regimentId: number, unit: Unit) => {
+    const unitWithUniqueId = { ...unit, id: uuidv4() };
     setArmy({
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId && regiment.hero
-          ? { ...regiment, units: [...regiment.units, unit] }
+          ? { ...regiment, units: [...regiment.units, unitWithUniqueId] }
           : regiment
       ),
     });
