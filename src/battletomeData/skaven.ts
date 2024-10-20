@@ -1,6 +1,6 @@
-import { keywords, skavenKeywords, skavenUnits } from "../../constants";
+import { keywords, skavenKeywords, skavenUnits } from "../constants";
 
-export const skavenData = [
+export const skaven = [
   {
     name: skavenUnits.greySeer,
     cost: 120,
@@ -245,3 +245,30 @@ export const skavenData = [
     ],
   },
 ];
+
+export const battleFormations = {
+  warpcogConvocation: "Warpcog Convocation",
+  clawHorde: "Claw Horde",
+  fleshmeldManagerie: "Fleshmeld Managerie",
+  viriluntProcession: "Virilunt Procession",
+};
+
+export const artifactsOfPower = {
+  foulhide: "Foulhide",
+  warpstoneCharm: "Warpstone Charm",
+  skavenbrew: "Skavenbrew",
+};
+
+export const heroicTraits = {
+  scurryAway: "Scurry Away",
+  shortTempered: "Short Tempered",
+  skillManipulator: "Skill Manipulator",
+};
+
+export const spellLores = { loreOfRuin: "Lore of Ruin" };
+
+export const prayerLores = { noxiousPrayers: "Noxious Prayers" };
+
+export const skavenManifestationLore = {
+  manifestationsOfDoom: "Manifestations of Doom",
+};
