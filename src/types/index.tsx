@@ -54,4 +54,5 @@ export type ArmyContextType = {
   loadArmyFromLocalStorage: () => void;
   faction: string;
   setFaction: (faction: string) => void;
+  availableFactions: string[];
 };

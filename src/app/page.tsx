@@ -5,7 +5,8 @@ import { ArmyContext } from "@/context/armyContext";
 
 const Home: React.FC = () => {
   const [selectedFaction, setSelectedFaction] = useState<string>("");
-  const { loadArmyFromLocalStorage, setFaction } = useContext(ArmyContext);
+  const { loadArmyFromLocalStorage, setFaction, availableFactions } =
+    useContext(ArmyContext);
   const router = useRouter();
 
   const handleRaceSelection = () => {
@@ -28,9 +29,11 @@ const Home: React.FC = () => {
         onChange={(e) => setSelectedFaction(e.target.value)}
       >
         <option value="">Select Race</option>
-        <option value="race1">Race 1</option>
-        <option value="race2">Race 2</option>
-        {/* Add more races as needed */}
+        {availableFactions.map((faction) => (
+          <option key={faction} value={faction}>
+            {faction}
+          </option>
+        ))}
       </select>
       <button onClick={handleRaceSelection}>Select Race</button>
       <button onClick={handleLoadArmy}>Load Army</button>

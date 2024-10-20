@@ -1,8 +1,21 @@
 "use client";
 import React, { createContext, ReactNode, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ArmyContextType, Regiment, Army, Hero, Unit } from "@/types";
-import { skavenData } from "@/battletomeData/skaven/skaven";
+import {
+  ArmyContextType,
+  Regiment,
+  Army,
+  Hero,
+  Unit,
+  UnitTypes,
+} from "@/types";
+import {
+  battletomeData,
+  genericManifestationLores,
+  factionSpecificManifestationLores,
+  spellLores,
+  prayerLores,
+} from "@/battletomeData";
 import { keywords } from "@/constants";
 
 export const ArmyContext = createContext<ArmyContextType>(
@@ -14,9 +27,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isGeneralSet, setIsGeneralSet] = useState<boolean>(false);
   const [faction, setFaction] = useState<string>("");
 
-  // const availableHeroes: Hero[] = skavenData.filter((unit) =>
-  //   unit.keywords.includes(keywords.hero)
-  // );
+  const availableFactions = Object.keys(battletomeData);
+
 
   // const availableUnits: Unit[] = skavenData.filter(
   //   (unit) => !unit.keywords.includes(keywords.hero)
@@ -145,6 +157,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         loadArmyFromLocalStorage,
         faction,
         setFaction,
+        availableFactions,
       }}
     >
       {children}
