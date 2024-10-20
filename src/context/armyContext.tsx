@@ -29,36 +29,68 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableFactions = Object.keys(battletomeData);
 
-
-  // const availableUnits: Unit[] = skavenData.filter(
-  //   (unit) => !unit.keywords.includes(keywords.hero)
-  // );
-
-  const factionData: { [key: string]: { heroes: Hero[]; units: Unit[] } } = {
-    race1: {
-      heroes: [
-        { id: 1, name: "Race 1 Hero 1" },
-        { id: 2, name: "Race 1 Hero 2" },
-      ],
-      units: [
-        { id: 1, name: "Race 1 Unit 1" },
-        { id: 2, name: "Race 1 Unit 2" },
-      ],
-    },
-    race2: {
-      heroes: [
-        { id: 3, name: "Race 2 Hero 1" },
-        { id: 4, name: "Race 2 Hero 2" },
-      ],
-      units: [
-        { id: 3, name: "Race 2 Unit 1" },
-        { id: 4, name: "Race 2 Unit 2" },
-      ],
-    },
+  const availableManifestationLores: { [key: string]: string } = {
+    ...genericManifestationLores,
+    ...(factionSpecificManifestationLores[
+      faction as keyof typeof factionSpecificManifestationLores
+    ] || {}),
   };
 
-  const getAvailableHeroes = () => factionData[faction]?.heroes || [];
-  const getAvailableUnits = () => factionData[faction]?.units || [];
+  // const availableSpellLores: { [key: string]: string[] } = {
+  //   ...(spellLores[faction as keyof typeof spellLores] || {}),
+  // };
+
+  // const availablePrayerLores: { [key: string]: string[] } = {
+  //   ...(prayerLores[faction as keyof typeof prayerLores] || {}),
+  // };
+
+  const setSpellLore = (spellLore: string) => {
+    setArmy((prevArmy) => ({ ...prevArmy, spellLore }));
+  };
+
+  const setPrayerLore = (prayerLore: string) => {
+    setArmy((prevArmy) => ({ ...prevArmy, prayerLore }));
+  };
+
+  // const setHeroicTrait = (regimentId: number, heroicTrait: string) => {
+  //   setArmy((prevArmy) => ({
+  //     ...prevArmy,
+  //     regiments: prevArmy.regiments.map((regiment) =>
+  //       regiment.id === regimentId
+  //         ? { ...regiment, hero: { ...regiment.hero, heroicTrait } }
+  //         : regiment
+  //     ),
+  //   }));
+  // };
+
+  // const setArtefactOfPower = (regimentId: number, artefactOfPower: string) => {
+  //   setArmy((prevArmy) => ({
+  //     ...prevArmy,
+  //     regiments: prevArmy.regiments.map((regiment) =>
+  //       regiment.id === regimentId
+  //         ? { ...regiment, hero: { ...regiment.hero, artefactOfPower } }
+  //         : regiment
+  //     ),
+  //   }));
+  // };
+
+  const setBattleFormation = (battleFormation: string) => {
+    setArmy((prevArmy) => ({ ...prevArmy, battleFormation }));
+  };
+
+  const filterUnitsByFaction = (faction: string): UnitTypes[] => {
+    return battletomeData[faction as keyof typeof battletomeData];
+  };
+
+  const getAvailableHeroes = (): Hero[] =>
+    filterUnitsByFaction(faction).filter((unit) =>
+      unit.keywords.includes(keywords.hero)
+    ) as Hero[];
+
+  const getAvailableUnits = () =>
+    filterUnitsByFaction(faction).filter(
+      (unit) => !unit.keywords.includes(keywords.hero)
+    );
 
   const addRegiment = () => {
     if (army.regiments.length < 5) {
@@ -77,9 +109,12 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const addHero = (regimentId: number, hero: Hero) => {
+    const heroWithUniqueId = { ...hero, id: uuidv4() };
     setArmy({
       regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId ? { ...regiment, hero } : regiment
+        regiment.id === regimentId
+          ? { ...regiment, hero: heroWithUniqueId }
+          : regiment
       ),
     });
   };
