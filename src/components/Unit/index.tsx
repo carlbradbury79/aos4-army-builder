@@ -8,17 +8,19 @@ const Unit: React.FC<{
   hasTooManyUnits: boolean;
 }> = ({ regimentId, canAddUnit, hasTooManyUnits }) => {
   const { addUnit, getAvailableUnits } = useContext(ArmyContext);
-  const [selectedUnitId, setSelectedUnitId] = useState<number | undefined>(
+  const [selectedUnitName, setSelectedUnitName] = useState<string | undefined>(
     undefined
   );
 
   const availableUnits = getAvailableUnits();
 
   const handleAddUnit = () => {
-    const selectedUnit = availableUnits.find((u) => u.id === selectedUnitId);
+    const selectedUnit = availableUnits.find(
+      (u) => u.name === selectedUnitName
+    );
     if (selectedUnit) {
       addUnit(regimentId, selectedUnit);
-      setSelectedUnitId(undefined);
+      setSelectedUnitName(undefined);
     }
   };
 
@@ -27,12 +29,12 @@ const Unit: React.FC<{
       {canAddUnit && (
         <div>
           <select
-            value={selectedUnitId ?? ""}
-            onChange={(e) => setSelectedUnitId(Number(e.target.value))}
+            value={selectedUnitName ?? ""}
+            onChange={(e) => setSelectedUnitName(e.target.value)}
           >
             <option value="">Select Unit</option>
             {availableUnits.map((unit: UnitType) => (
-              <option key={unit.id} value={unit.id}>
+              <option key={unit.name} value={unit.name}>
                 {unit.name}
               </option>
             ))}
