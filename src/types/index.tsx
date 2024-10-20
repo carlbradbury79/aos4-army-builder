@@ -1,23 +1,22 @@
-export type Unit = {
-  id: string;
+type UnitBase = {
   name: string;
+  id?: string;
+  cost: number;
+  quantity: number;
+  keywords: string[];
+  factionKeywords: string[];
 };
 
-export type Hero = { id: number; name: string; isGeneral?: boolean };
-// export type Unit = {
-//   name: string;
-//   id: number;
-//   cost: number;
-//   quantity: number;
-//   keywords: string[];
-//   factionKeywords: string[];
-//   isReinforced?: boolean;
-// };
+export type Unit = UnitBase & {
+  isReinforced?: boolean;
+};
 
-// export type Hero = Omit<Unit, "isReinforced"> & {
-//   subordinates: Unit[];
-//   isGeneral?: boolean;
-// };
+export type Hero = UnitBase & {
+  subordinates: Unit[];
+  isGeneral?: boolean | undefined;
+};
+
+export type UnitTypes = Hero | Unit;
 
 export type Regiment = {
   id: number;
