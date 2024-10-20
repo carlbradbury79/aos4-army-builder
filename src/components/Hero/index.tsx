@@ -8,17 +8,19 @@ const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
 }) => {
   const { addHero, removeHero, getAvailableHeroes, setGeneral, isGeneralSet } =
     useContext(ArmyContext);
-  const [selectedHeroId, setSelectedHeroId] = useState<number | undefined>(
+  const [selectedHeroName, setSelectedHeroName] = useState<string | undefined>(
     undefined
   );
 
   const availableHeroes = getAvailableHeroes();
 
   const handleAddHero = () => {
-    const selectedHero = availableHeroes.find((h) => h.id === selectedHeroId);
+    const selectedHero = availableHeroes.find(
+      (h) => h.name === selectedHeroName
+    );
     if (selectedHero) {
       addHero(regimentId, selectedHero);
-      setSelectedHeroId(undefined);
+      setSelectedHeroName(undefined);
     }
   };
 
@@ -38,12 +40,12 @@ const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
       ) : (
         <div>
           <select
-            value={selectedHeroId}
-            onChange={(e) => setSelectedHeroId(Number(e.target.value))}
+            value={selectedHeroName}
+            onChange={(e) => setSelectedHeroName(e.target.value)}
           >
             <option value="">Select Hero</option>
             {availableHeroes.map((hero: HeroType) => (
-              <option key={hero.id} value={hero.id}>
+              <option key={hero.name} value={hero.name}>
                 {hero.name}
               </option>
             ))}
