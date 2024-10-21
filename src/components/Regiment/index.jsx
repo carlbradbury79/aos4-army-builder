@@ -4,13 +4,21 @@ import Hero from "@/components/Hero";
 import Unit from "@/components/Unit";
 
 const Regiment = ({ regiment }) => {
-  const { removeUnit } = useContext(ArmyContext);
+  const {
+    removeUnit,
+    availableHeroicTraits,
+    setHeroicTrait,
+    isHeroicTraitSelected,
+    removeHeroicTrait,
+  } = useContext(ArmyContext);
 
   const regimentHasGeneral = regiment?.hero?.isGeneral;
   const regimentCurrentSize = regiment.units.length;
   const regimentMaxSize = regimentHasGeneral ? 4 : 3;
   const canAddUnit = regimentCurrentSize < regimentMaxSize;
   const hasTooManyUnits = regimentCurrentSize > regimentMaxSize;
+  const canHeroTakeTraitsOrArtefacts =
+    regiment.hero && !regiment?.hero?.keywords?.includes("unique");
 
   return (
     <div>
@@ -18,6 +26,39 @@ const Regiment = ({ regiment }) => {
       <Hero regimentId={regiment.id} hero={regiment.hero} />
       {regiment.hero && (
         <div>
+          <h3>Hero Options</h3>
+          {canHeroTakeTraitsOrArtefacts && (
+            <>
+              <div>
+                {regiment.hero.heroicTrait && (
+                  <div>
+                    Heroic Trait: {regiment.hero.heroicTrait}
+                    <button onClick={() => removeHeroicTrait(regiment.id)}>
+                      Remove
+                    </button>
+                  </div>
+                )}
+                {!isHeroicTraitSelected && (
+                  <label>
+                    Heroic Trait:
+                    <select
+                      value={regiment.hero.heroicTrait || ""}
+                      onChange={(e) =>
+                        setHeroicTrait(regiment.id, e.target.value)
+                      }
+                    >
+                      <option value="">Select Heroic Trait</option>
+                      {availableHeroicTraits.map((trait) => (
+                        <option key={trait} value={trait}>
+                          {trait}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+              </div>
+            </>
+          )}
           <h3>Units</h3>
           {regiment.units.map((unit) => (
             <div key={unit.id}>

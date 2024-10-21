@@ -14,6 +14,7 @@ export type Unit = UnitBase & {
 export type Hero = UnitBase & {
   subordinates: Unit[];
   isGeneral?: boolean | undefined;
+  heroicTrait?: string | undefined;
 };
 
 export type UnitTypes = Hero | Unit;
@@ -54,4 +55,8 @@ export type ArmyContextType = {
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
+  availableHeroicTraits: string[];
+  setHeroicTrait: (regimentId: number, heroicTrait: string) => void;
+  isHeroicTraitSelected: boolean;
+  removeHeroicTrait: (regimentId: number) => void;
 };
