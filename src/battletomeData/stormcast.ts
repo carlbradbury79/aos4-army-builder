@@ -48,14 +48,6 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
-    name: "Knight-Heraldor",
-    cost: 100,
-    quantity: 1,
-    subordinates: [],
-    keywords: ["hero", "stormcast"],
-    factionKeywords: ["stormcast"],
-  },
-  {
     name: "Knight-Incantor",
     cost: 100,
     quantity: 1,

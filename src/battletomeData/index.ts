@@ -34,5 +34,5 @@ export const prayerLores = {
 
 export const heroicTraits = {
   skaven: skavenHeroicTraits,
-  stormcast: skavenHeroicTraits,
+  stormcast: stormcastHeroicTraits,
 };
