@@ -259,11 +259,11 @@ export const artifactsOfPower = {
   skavenbrew: "Skavenbrew",
 };
 
-export const heroicTraits = {
-  scurryAway: "Scurry Away",
-  shortTempered: "Short Tempered",
-  skillManipulator: "Skill Manipulator",
-};
+export const heroicTraits = [
+  "Scurry Away",
+  "Short Tempered",
+  "Skill Manipulator",
+];
 
 export const spellLores = { loreOfRuin: "Lore of Ruin" };
 

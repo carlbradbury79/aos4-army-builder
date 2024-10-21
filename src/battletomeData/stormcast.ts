@@ -101,11 +101,11 @@ export const artifactsOfPower = {
   talismanOfEndurance: "Talisman of Endurance",
 };
 
-export const heroicTraits = {
-  strongHeaded: "Strong Headed",
-  staunchDefender: "Staunch Defender",
-  divinePower: "Divine Power",
-};
+export const heroicTraits = [
+  "Strong Headed",
+  "Staunch Defender",
+  "Divine Power",
+];
 
 export const stormcastManifestationLore = {
   celestialInvocation: "Celestial Invocation",
