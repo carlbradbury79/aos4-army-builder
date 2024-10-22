@@ -246,12 +246,12 @@ export const skaven = [
   },
 ];
 
-export const battleFormations = {
-  warpcogConvocation: "Warpcog Convocation",
-  clawHorde: "Claw Horde",
-  fleshmeldManagerie: "Fleshmeld Managerie",
-  viriluntProcession: "Virilunt Procession",
-};
+export const battleFormations = [
+  "Warpcog Convocation",
+  "Claw Horde",
+  "Fleshmeld Managerie",
+  "Virilunt Procession",
+];
 
 export const artifactsOfPower = ["Foulhide", "Warpstone Charm", "Skavenbrew"];
 
@@ -261,10 +261,8 @@ export const heroicTraits = [
   "Skill Manipulator",
 ];
 
-export const spellLores = { loreOfRuin: "Lore of Ruin" };
+export const spellLores = ["Lore of Ruin"];
 
-export const prayerLores = { noxiousPrayers: "Noxious Prayers" };
+export const prayerLores = ["Noxious Prayers"];
 
-export const skavenManifestationLore = {
-  manifestationsOfDoom: "Manifestations of Doom",
-};
+export const skavenManifestationLore = ["Manifestations of Doom"];

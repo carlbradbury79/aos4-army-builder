@@ -99,21 +99,11 @@ export const heroicTraits = [
   "Divine Power",
 ];
 
-export const stormcastManifestationLore = {
-  celestialInvocation: "Celestial Invocation",
-  stormMagic: "Storm Magic",
-};
+export const stormcastManifestationLore = [
+  "Celestial Invocation",
+  "Storm Magic",
+];
 
-export const spellLores = {
-  stormcast: [
-    { id: 1, name: "Lightning Blast" },
-    { id: 2, name: "Thunderstrike" },
-  ],
-};
+export const spellLores = ["Lightning Blast", "Thunderstrike"];
 
-export const prayerLores = {
-  stormcast: [
-    { id: 1, name: "Divine Shield" },
-    { id: 2, name: "Blessed Hammer" },
-  ],
-};
+export const prayerLores = ["Divine Shield", "Blessed Hammer"];
