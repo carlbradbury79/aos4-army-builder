@@ -16,6 +16,7 @@ import {
   spellLores,
   prayerLores,
   heroicTraits,
+  artifactsOfPower,
 } from "@/battletomeData";
 import { keywords } from "@/constants";
 
@@ -38,6 +39,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableHeroicTraits =
     heroicTraits[faction as keyof typeof heroicTraits];
+
+  const availableArtifactsOfPower =
+    artifactsOfPower[faction as keyof typeof artifactsOfPower];
 
   // const availableSpellLores: { [key: string]: string[] } = {
   //   ...(spellLores[faction as keyof typeof spellLores] || {}),
@@ -86,6 +90,10 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const isGeneralSelected = army.regiments.some(
     (regiment) => regiment.hero?.isGeneral
+  );
+
+  const isArtefactOfPowerSelected = army.regiments.some(
+    (regiment) => regiment.hero?.artefactOfPower
   );
 
   // const setArtefactOfPower = (regimentId: number, artefactOfPower: string) => {
@@ -205,9 +213,11 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setFaction,
         availableFactions,
         availableHeroicTraits,
+        availableArtifactsOfPower,
         setHeroField,
         isHeroicTraitSelected,
         isGeneralSelected,
+        isArtefactOfPowerSelected,
         removeHeroField,
       }}
     >

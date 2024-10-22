@@ -15,6 +15,7 @@ export type Hero = UnitBase & {
   subordinates: Unit[];
   isGeneral?: boolean | undefined;
   heroicTrait?: string | undefined;
+  artefactOfPower?: string | undefined;
 };
 
 export type UnitTypes = Hero | Unit;
@@ -53,6 +54,7 @@ export type ArmyContextType = {
   setFaction: (faction: string) => void;
   availableFactions: string[];
   availableHeroicTraits: string[];
+  availableArtifactsOfPower: string[];
   setHeroField: (
     regimentId: number,
     key: string,
@@ -60,5 +62,6 @@ export type ArmyContextType = {
   ) => void;
   isHeroicTraitSelected: boolean;
   isGeneralSelected: boolean;
+  isArtefactOfPowerSelected: boolean;
   removeHeroField: (regimentId: number, field: string) => void;
 };

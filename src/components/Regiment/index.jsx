@@ -8,9 +8,11 @@ const Regiment = ({ regiment }) => {
   const {
     removeUnit,
     availableHeroicTraits,
+    availableArtifactsOfPower,
     setHeroField,
     isHeroicTraitSelected,
     removeHeroField,
+    isArtefactOfPowerSelected,
   } = useContext(ArmyContext);
 
   const regimentHasGeneral = regiment?.hero?.isGeneral;
@@ -66,19 +68,41 @@ const Regiment = ({ regiment }) => {
                   </label>
                 )}
               </div>
-              <div>
-                <label>
-                  Artefact of Power:
-                  <select
-                    value={regiment.hero.artefactOfPower || ""}
-                    onChange={(e) =>
-                      setArtefactOfPower(regiment.id, e.target.value)
+              {regiment.hero.artefactOfPower && (
+                <div>
+                  Artefact of Power: {regiment.hero.artefactOfPower}
+                  <button
+                    onClick={() =>
+                      removeHeroField(regiment.id, armyTerms.artefactOfPower)
                     }
                   >
-                    <option value="">Select Artefact of Power</option>
-                    {/* Add artefact of power options here */}
-                  </select>
-                </label>
+                    Remove
+                  </button>
+                </div>
+              )}
+              <div>
+                {!isArtefactOfPowerSelected && (
+                  <label>
+                    Artefact of Power:
+                    <select
+                      value={regiment.hero.artefactOfPower || ""}
+                      onChange={(e) =>
+                        setHeroField(
+                          regiment.id,
+                          armyTerms.artefactOfPower,
+                          e.target.value
+                        )
+                      }
+                    >
+                      <option value="">Select Artefact of Power</option>
+                      {availableArtifactsOfPower.map((artefact) => (
+                        <option key={artefact} value={artefact}>
+                          {artefact}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
               </div>
             </>
           )}
