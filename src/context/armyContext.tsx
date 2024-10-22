@@ -31,11 +31,14 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableFactions = Object.keys(battletomeData);
 
+  const factionManifestationLore =
+    factionSpecificManifestationLores[
+      faction as keyof typeof factionSpecificManifestationLores
+    ] || [];
+
   const availableManifestationLores = [
     ...genericManifestationLores,
-    ...factionSpecificManifestationLores[
-      faction as keyof typeof factionSpecificManifestationLores
-    ],
+    factionManifestationLore,
   ];
 
   const availableHeroicTraits =
@@ -50,12 +53,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const availableSpellLores = spellLores[faction as keyof typeof spellLores];
   const availablePrayerLores = prayerLores[faction as keyof typeof prayerLores];
 
-  const setSpellLore = (spellLore: string) => {
-    setArmy((prevArmy) => ({ ...prevArmy, spellLore }));
-  };
-
-  const setPrayerLore = (prayerLore: string) => {
-    setArmy((prevArmy) => ({ ...prevArmy, prayerLore }));
+  const setArmyField = (field: string, value: string | undefined) => {
+    setArmy(() => ({ ...army, [field]: value }));
   };
 
   const setHeroField = (
@@ -63,9 +62,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     key: string,
     value: string | boolean
   ) => {
-    setArmy((prevArmy) => ({
-      ...prevArmy,
-      regiments: prevArmy.regiments.map((regiment) =>
+    setArmy(() => ({
+      ...army,
+      regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
           ? { ...regiment, hero: { ...regiment.hero, [key]: value } }
           : regiment
@@ -75,6 +74,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const removeHeroField = (regimentId: number, field: string) => {
     setArmy({
+      ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
           ? { ...regiment, hero: { ...regiment.hero, [field]: undefined } }
@@ -94,6 +94,11 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isArtefactOfPowerSelected = army.regiments.some(
     (regiment) => regiment.hero?.artefactOfPower
   );
+
+  const spellLoreSelected = army.spellLore;
+  const prayerLoreSelected = army.prayerLore;
+  const battleFormationSelected = army.battleFormation;
+  const manifestationLoreSelected = army.manifestationLore;
 
   const setBattleFormation = (battleFormation: string) => {
     setArmy((prevArmy) => ({ ...prevArmy, battleFormation }));
@@ -116,6 +121,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const addRegiment = () => {
     if (army.regiments.length < 5) {
       setArmy({
+        ...army,
         regiments: [...army.regiments, { id: Date.now(), units: [] }],
       });
     }
@@ -123,6 +129,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const removeRegiment = (regimentId: number) => {
     setArmy({
+      ...army,
       regiments: army.regiments.filter(
         (regiment) => regiment.id !== regimentId
       ),
@@ -132,6 +139,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const addHero = (regimentId: number, hero: Hero) => {
     const heroWithUniqueId = { ...hero, id: uuidv4() };
     setArmy({
+      ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
           ? { ...regiment, hero: heroWithUniqueId }
@@ -142,6 +150,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const removeHero = (regimentId: number) => {
     setArmy({
+      ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId ? { ...regiment, hero: undefined } : regiment
       ),
@@ -151,6 +160,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const addUnit = (regimentId: number, unit: Unit) => {
     const unitWithUniqueId = { ...unit, id: uuidv4() };
     setArmy({
+      ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId && regiment.hero
           ? { ...regiment, units: [...regiment.units, unitWithUniqueId] }
@@ -161,6 +171,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const removeUnit = (regimentId: number, unitId: string) => {
     setArmy({
+      ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
           ? {
@@ -182,6 +193,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setArmy(JSON.parse(savedArmy));
     }
   };
+
+  console.log(army);
 
   return (
     <ArmyContext.Provider
@@ -210,7 +223,12 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isHeroicTraitSelected,
         isGeneralSelected,
         isArtefactOfPowerSelected,
+        spellLoreSelected,
+        prayerLoreSelected,
+        battleFormationSelected,
+        manifestationLoreSelected,
         removeHeroField,
+        setArmyField,
       }}
     >
       {children}

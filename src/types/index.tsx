@@ -28,10 +28,10 @@ export type Regiment = {
 
 export type Army = {
   armyName?: string;
-  battleFormation?: string;
-  spellLore?: string;
-  prayerLore?: string;
-  manifestationLore?: string;
+  battleFormation?: string | undefined;
+  spellLore?: string | undefined;
+  prayerLore?: string | undefined;
+  manifestationLore?: string | undefined;
   regiments: Regiment[];
   auxiliaryUnits?: Unit[];
   armyPoints?: number;
@@ -62,10 +62,15 @@ export type ArmyContextType = {
   setHeroField: (
     regimentId: number,
     key: string,
-    value: string | boolean
+    value: string | boolean | undefined
   ) => void;
   isHeroicTraitSelected: boolean;
   isGeneralSelected: boolean;
   isArtefactOfPowerSelected: boolean;
+  spellLoreSelected: string | undefined;
+  prayerLoreSelected: string | undefined;
+  battleFormationSelected: string | undefined;
+  manifestationLoreSelected: string | undefined;
   removeHeroField: (regimentId: number, field: string) => void;
+  setArmyField: (key: string, value: string | undefined) => void;
 };
