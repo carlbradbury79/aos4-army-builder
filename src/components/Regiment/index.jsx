@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import Hero from "@/components/Hero";
 import Unit from "@/components/Unit";
+import { armyTerms } from "@/constants/generalKeywords";
 
 const Regiment = ({ regiment }) => {
   const {
     removeUnit,
     availableHeroicTraits,
-    setHeroicTrait,
+    setHeroField,
     isHeroicTraitSelected,
-    removeHeroicTrait,
+    removeHeroField,
   } = useContext(ArmyContext);
 
   const regimentHasGeneral = regiment?.hero?.isGeneral;
@@ -33,7 +34,11 @@ const Regiment = ({ regiment }) => {
                 {regiment.hero.heroicTrait && (
                   <div>
                     Heroic Trait: {regiment.hero.heroicTrait}
-                    <button onClick={() => removeHeroicTrait(regiment.id)}>
+                    <button
+                      onClick={() =>
+                        removeHeroField(regiment.id, armyTerms.heroicTrait)
+                      }
+                    >
                       Remove
                     </button>
                   </div>
@@ -44,7 +49,11 @@ const Regiment = ({ regiment }) => {
                     <select
                       value={regiment.hero.heroicTrait || ""}
                       onChange={(e) =>
-                        setHeroicTrait(regiment.id, e.target.value)
+                        setHeroField(
+                          regiment.id,
+                          armyTerms.heroicTrait,
+                          e.target.value
+                        )
                       }
                     >
                       <option value="">Select Heroic Trait</option>
@@ -56,6 +65,20 @@ const Regiment = ({ regiment }) => {
                     </select>
                   </label>
                 )}
+              </div>
+              <div>
+                <label>
+                  Artefact of Power:
+                  <select
+                    value={regiment.hero.artefactOfPower || ""}
+                    onChange={(e) =>
+                      setArtefactOfPower(regiment.id, e.target.value)
+                    }
+                  >
+                    <option value="">Select Artefact of Power</option>
+                    {/* Add artefact of power options here */}
+                  </select>
+                </label>
               </div>
             </>
           )}

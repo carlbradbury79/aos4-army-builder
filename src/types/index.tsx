@@ -28,7 +28,6 @@ export type Regiment = {
 export type Army = {
   armyName?: string;
   battleFormation?: string;
-  heroicTrait?: string;
   spellLore?: string;
   prayerLore?: string;
   manifestationLore?: string;
@@ -56,7 +55,7 @@ export type ArmyContextType = {
   setFaction: (faction: string) => void;
   availableFactions: string[];
   availableHeroicTraits: string[];
-  setHeroicTrait: (regimentId: number, heroicTrait: string) => void;
+  setHeroField: (regimentId: number, hey: string, heroicTrait: string) => void;
   isHeroicTraitSelected: boolean;
-  removeHeroicTrait: (regimentId: number) => void;
+  removeHeroField: (regimentId: number, field: string) => void;
 };

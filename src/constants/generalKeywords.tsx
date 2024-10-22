@@ -23,3 +23,13 @@ export const keywords = {
   musician: "musician",
   standardBearer: "standardBearer",
 };
+
+export const armyTerms = {
+  heroicTrait: "heroicTrait",
+  artefactOfPower: "artefactOfPower",
+  spellLore: "spellLore",
+  prayerLore: "prayerLore",
+  manifestationLore: "manifestationLore",
+  battleFormation: "battleFormation",
+  isGeneral: "isGeneral",
+};

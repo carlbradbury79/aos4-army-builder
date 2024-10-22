@@ -27,8 +27,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [army, setArmy] = useState<Army>({ regiments: [] });
   const [isGeneralSet, setIsGeneralSet] = useState<boolean>(false);
   const [faction, setFaction] = useState<string>("");
-  const [isHeroicTraitSelected, setIsHeroicTraitSelected] =
-    useState<boolean>(false);
 
   const availableFactions = Object.keys(battletomeData);
 
@@ -41,8 +39,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableHeroicTraits =
     heroicTraits[faction as keyof typeof heroicTraits];
-
-  console.log(availableHeroicTraits);
 
   // const availableSpellLores: { [key: string]: string[] } = {
   //   ...(spellLores[faction as keyof typeof spellLores] || {}),
@@ -60,28 +56,30 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setArmy((prevArmy) => ({ ...prevArmy, prayerLore }));
   };
 
-  const setHeroicTrait = (regimentId: number, heroicTrait: string) => {
-    setIsHeroicTraitSelected(true);
+  const setHeroField = (regimentId: number, key: string, value: string) => {
     setArmy((prevArmy) => ({
       ...prevArmy,
       regiments: prevArmy.regiments.map((regiment) =>
         regiment.id === regimentId
-          ? { ...regiment, hero: { ...regiment.hero, heroicTrait } }
+          ? { ...regiment, hero: { ...regiment.hero, [key]: value } }
           : regiment
       ),
     }));
   };
 
-  const removeHeroicTrait = (regimentId: number) => {
+  const removeHeroField = (regimentId: number, field: string) => {
     setArmy({
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
-          ? { ...regiment, hero: { ...regiment.hero, heroicTrait: undefined } }
+          ? { ...regiment, hero: { ...regiment.hero, [field]: undefined } }
           : regiment
       ),
     });
-    setIsHeroicTraitSelected(false);
   };
+
+  const isHeroicTraitSelected = army.regiments.some(
+    (regiment) => regiment.hero?.heroicTrait
+  );
 
   // const setArtefactOfPower = (regimentId: number, artefactOfPower: string) => {
   //   setArmy((prevArmy) => ({
@@ -215,9 +213,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setFaction,
         availableFactions,
         availableHeroicTraits,
-        setHeroicTrait,
+        setHeroField,
         isHeroicTraitSelected,
-        removeHeroicTrait,
+        removeHeroField,
       }}
     >
       {children}
