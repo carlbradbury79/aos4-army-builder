@@ -25,7 +25,6 @@ export const ArmyContext = createContext<ArmyContextType>(
 
 const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [army, setArmy] = useState<Army>({ regiments: [] });
-  const [isGeneralSet, setIsGeneralSet] = useState<boolean>(false);
   const [faction, setFaction] = useState<string>("");
 
   const availableFactions = Object.keys(battletomeData);
@@ -56,7 +55,11 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setArmy((prevArmy) => ({ ...prevArmy, prayerLore }));
   };
 
-  const setHeroField = (regimentId: number, key: string, value: string) => {
+  const setHeroField = (
+    regimentId: number,
+    key: string,
+    value: string | boolean
+  ) => {
     setArmy((prevArmy) => ({
       ...prevArmy,
       regiments: prevArmy.regiments.map((regiment) =>
@@ -79,6 +82,10 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const isHeroicTraitSelected = army.regiments.some(
     (regiment) => regiment.hero?.heroicTrait
+  );
+
+  const isGeneralSelected = army.regiments.some(
+    (regiment) => regiment.hero?.isGeneral
   );
 
   // const setArtefactOfPower = (regimentId: number, artefactOfPower: string) => {
@@ -143,19 +150,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         regiment.id === regimentId ? { ...regiment, hero: undefined } : regiment
       ),
     });
-    setIsGeneralSet(false);
-    setIsHeroicTraitSelected(false);
-  };
-
-  const setGeneral = (regimentId: number) => {
-    setArmy({
-      regiments: army.regiments.map((reg) =>
-        reg.id === regimentId && reg.hero
-          ? { ...reg, hero: { ...reg.hero, isGeneral: true } }
-          : reg
-      ),
-    });
-    setIsGeneralSet(true);
   };
 
   const addUnit = (regimentId: number, unit: Unit) => {
@@ -201,12 +195,10 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeRegiment,
         addHero,
         removeHero,
-        setGeneral,
         addUnit,
         removeUnit,
         getAvailableHeroes,
         getAvailableUnits,
-        isGeneralSet,
         saveArmyToLocalStorage,
         loadArmyFromLocalStorage,
         faction,
@@ -215,6 +207,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         availableHeroicTraits,
         setHeroField,
         isHeroicTraitSelected,
+        isGeneralSelected,
         removeHeroField,
       }}
     >

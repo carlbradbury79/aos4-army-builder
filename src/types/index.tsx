@@ -43,19 +43,22 @@ export type ArmyContextType = {
   removeRegiment: (regimentId: number) => void;
   addHero: (regimentId: number, hero: Hero) => void;
   removeHero: (regimentId: number) => void;
-  setGeneral: (regimentId: number) => void;
   addUnit: (regimentId: number, unit: Unit) => void;
   removeUnit: (regimentId: number, unitId: string) => void;
   getAvailableHeroes: () => Hero[];
   getAvailableUnits: () => Unit[];
-  isGeneralSet: boolean;
   saveArmyToLocalStorage: () => void;
   loadArmyFromLocalStorage: () => void;
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
   availableHeroicTraits: string[];
-  setHeroField: (regimentId: number, hey: string, heroicTrait: string) => void;
+  setHeroField: (
+    regimentId: number,
+    key: string,
+    value: string | boolean
+  ) => void;
   isHeroicTraitSelected: boolean;
+  isGeneralSelected: boolean;
   removeHeroField: (regimentId: number, field: string) => void;
 };
