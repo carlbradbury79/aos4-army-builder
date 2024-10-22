@@ -30,12 +30,12 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableFactions = Object.keys(battletomeData);
 
-  const availableManifestationLores: { [key: string]: string } = {
+  const availableManifestationLores = [
     ...genericManifestationLores,
-    ...(factionSpecificManifestationLores[
+    ...factionSpecificManifestationLores[
       faction as keyof typeof factionSpecificManifestationLores
-    ] || {}),
-  };
+    ],
+  ];
 
   const availableHeroicTraits =
     heroicTraits[faction as keyof typeof heroicTraits];
@@ -43,13 +43,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const availableArtifactsOfPower =
     artifactsOfPower[faction as keyof typeof artifactsOfPower];
 
-  // const availableSpellLores: { [key: string]: string[] } = {
-  //   ...(spellLores[faction as keyof typeof spellLores] || {}),
-  // };
-
-  // const availablePrayerLores: { [key: string]: string[] } = {
-  //   ...(prayerLores[faction as keyof typeof prayerLores] || {}),
-  // };
+  const availableSpellLores = spellLores[faction as keyof typeof spellLores];
+  const availablePrayerLores = prayerLores[faction as keyof typeof prayerLores];
 
   const setSpellLore = (spellLore: string) => {
     setArmy((prevArmy) => ({ ...prevArmy, spellLore }));
@@ -95,17 +90,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isArtefactOfPowerSelected = army.regiments.some(
     (regiment) => regiment.hero?.artefactOfPower
   );
-
-  // const setArtefactOfPower = (regimentId: number, artefactOfPower: string) => {
-  //   setArmy((prevArmy) => ({
-  //     ...prevArmy,
-  //     regiments: prevArmy.regiments.map((regiment) =>
-  //       regiment.id === regimentId
-  //         ? { ...regiment, hero: { ...regiment.hero, artefactOfPower } }
-  //         : regiment
-  //     ),
-  //   }));
-  // };
 
   const setBattleFormation = (battleFormation: string) => {
     setArmy((prevArmy) => ({ ...prevArmy, battleFormation }));
@@ -214,6 +198,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         availableFactions,
         availableHeroicTraits,
         availableArtifactsOfPower,
+        availableManifestationLores,
+        availableSpellLores,
+        availablePrayerLores,
         setHeroField,
         isHeroicTraitSelected,
         isGeneralSelected,
