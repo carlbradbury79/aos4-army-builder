@@ -4,6 +4,7 @@ import {
   spellLores as skavenSpellLores,
   prayerLores as skavenPrayerLores,
   heroicTraits as skavenHeroicTraits,
+  artifactsOfPower as skavenArtifactsOfPower,
 } from "./skaven";
 import {
   stormcast,
@@ -11,6 +12,7 @@ import {
   spellLores as stormcastSpellLores,
   prayerLores as stormcastPrayerLores,
   heroicTraits as stormcastHeroicTraits,
+  artifactsOfPower as stormcastArtifactsOfPower,
 } from "./stormcast";
 import { genericManifestationLores as generic } from "./generic";
 
@@ -35,4 +37,9 @@ export const prayerLores = {
 export const heroicTraits = {
   skaven: skavenHeroicTraits,
   stormcast: stormcastHeroicTraits,
+};
+
+export const artifactsOfPower = {
+  skaven: skavenArtifactsOfPower,
+  stormcast: stormcastArtifactsOfPower,
 };

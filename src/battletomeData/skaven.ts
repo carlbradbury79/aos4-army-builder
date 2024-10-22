@@ -253,11 +253,7 @@ export const battleFormations = {
   viriluntProcession: "Virilunt Procession",
 };
 
-export const artifactsOfPower = {
-  foulhide: "Foulhide",
-  warpstoneCharm: "Warpstone Charm",
-  skavenbrew: "Skavenbrew",
-};
+export const artifactsOfPower = ["Foulhide", "Warpstone Charm", "Skavenbrew"];
 
 export const heroicTraits = [
   "Scurry Away",

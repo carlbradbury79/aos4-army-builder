@@ -87,11 +87,11 @@ export const battleFormations = {
   hallowedKnights: "Hallowed Knights",
 };
 
-export const artifactsOfPower = {
-  armorOfSilveredSigmarite: "Armor of Silvered Sigmarite",
-  obsidianBlade: "Obsidian Blade",
-  talismanOfEndurance: "Talisman of Endurance",
-};
+export const artifactsOfPower = [
+  "Armor of Silvered Sigmarite",
+  "Obsidian Blade",
+  "Talisman of Endurance",
+];
 
 export const heroicTraits = [
   "Strong Headed",
