@@ -1,8 +1,8 @@
-export const genericManifestationLores = {
-  morbidConjuration: "Morbid Conjuration",
-  twilitSorceries: "Twilit Sorceries",
-  forbiddenPower: "Forbidden Power",
-  primalEnergy: "Primal Energy",
-  aetherwroughtMachineries: "Aetherwrought Machineries",
-  krondspineIncarnate: "Krondspine Incarnate",
-};
+export const genericManifestationLores = [
+  "Morbid Conjuration",
+  "Twilit Sorceries",
+  "Forbidden Power",
+  "Primal Energy",
+  "Aetherwrought Machineries",
+  "Krondspine Incarnate",
+];
