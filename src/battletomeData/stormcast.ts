@@ -80,12 +80,12 @@ export const stormcast = [
   },
 ];
 
-export const battleFormations = {
-  hammerstrikeForce: "Hammerstrike Force",
-  warriorChamber: "Warrior Chamber",
-  celestialVindicators: "Celestial Vindicators",
-  hallowedKnights: "Hallowed Knights",
-};
+export const battleFormations = [
+  "Hammerstrike Force",
+  "Warrior Chamber",
+  "Celestial Vindicators",
+  "Hallowed Knights",
+];
 
 export const artifactsOfPower = [
   "Armor of Silvered Sigmarite",

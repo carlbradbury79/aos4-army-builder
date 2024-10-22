@@ -58,6 +58,7 @@ export type ArmyContextType = {
   availableManifestationLores: string[];
   availableSpellLores: string[];
   availablePrayerLores: string[];
+  availableBattleFormations: string[];
   setHeroField: (
     regimentId: number,
     key: string,

@@ -17,6 +17,7 @@ import {
   prayerLores,
   heroicTraits,
   artifactsOfPower,
+  battleFormations,
 } from "@/battletomeData";
 import { keywords } from "@/constants";
 
@@ -39,6 +40,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableHeroicTraits =
     heroicTraits[faction as keyof typeof heroicTraits];
+
+  const availableBattleFormations =
+    battleFormations[faction as keyof typeof battleFormations];
 
   const availableArtifactsOfPower =
     artifactsOfPower[faction as keyof typeof artifactsOfPower];
@@ -197,6 +201,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setFaction,
         availableFactions,
         availableHeroicTraits,
+        availableBattleFormations,
         availableArtifactsOfPower,
         availableManifestationLores,
         availableSpellLores,
