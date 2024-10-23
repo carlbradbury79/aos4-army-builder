@@ -3,7 +3,7 @@ import { ArmyContext } from "@/context/armyContext";
 import Hero from "@/components/Hero";
 import AddUnit from "@/components/AddUnit";
 import { armyTerms } from "@/constants/generalKeywords";
-import { canBeReinforced } from "@/helpers/canBeReinforced";
+import Unit from "@/components/Unit";
 
 const Regiment = ({ regiment }) => {
   const {
@@ -117,26 +117,7 @@ const Regiment = ({ regiment }) => {
           )}
           <h3>Units</h3>
           {regiment.units.map((unit) => (
-            <div key={unit.id}>
-              {unit.quantity} {unit.name} {unit.isReinforced && "(Reinforced)"}{" "}
-              {canBeReinforced(unit) &&
-                (unit.isReinforced ? (
-                  <button
-                    onClick={() => reinforceUnit(regiment.id, unit.id, false)}
-                  >
-                    Undo reinforce
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => reinforceUnit(regiment.id, unit.id, true)}
-                  >
-                    Reinforce
-                  </button>
-                ))}
-              <button onClick={() => removeUnit(regiment.id, unit.id)}>
-                Remove Unit
-              </button>
-            </div>
+            <Unit key={unit.id} unit={unit} regimentId={regiment.id} />
           ))}
           <AddUnit
             regimentId={regiment.id}
