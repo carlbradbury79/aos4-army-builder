@@ -27,7 +27,7 @@ const Regiment = ({ regiment }) => {
 
   return (
     <div>
-      <h2>Regiment {regiment.id}</h2>
+      <h2>Regiment</h2>
       <Hero regimentId={regiment.id} hero={regiment.hero} />
       {regiment.hero && (
         <div>
