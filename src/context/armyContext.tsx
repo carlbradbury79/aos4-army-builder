@@ -38,7 +38,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const availableManifestationLores = [
     ...genericManifestationLores,
-    factionManifestationLore,
+    ...factionManifestationLore,
   ];
 
   const availableHeroicTraits =
@@ -60,7 +60,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const setHeroField = (
     regimentId: number,
     key: string,
-    value: string | boolean
+    value: string | boolean | undefined
   ) => {
     setArmy(() => ({
       ...army,
