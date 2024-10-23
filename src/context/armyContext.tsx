@@ -194,7 +194,13 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  console.log(army);
+  const totalArmyPoints = army.regiments.reduce(
+    (acc, regiment) =>
+      acc +
+      (regiment?.hero?.cost ?? 0) +
+      regiment.units.reduce((acc, unit) => acc + unit.cost, 0),
+    0
+  );
 
   return (
     <ArmyContext.Provider
@@ -229,6 +235,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         manifestationLoreSelected,
         removeHeroField,
         setArmyField,
+        totalArmyPoints,
       }}
     >
       {children}

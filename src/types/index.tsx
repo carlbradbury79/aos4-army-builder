@@ -73,4 +73,5 @@ export type ArmyContextType = {
   manifestationLoreSelected: string | undefined;
   removeHeroField: (regimentId: string, field: string) => void;
   setArmyField: (key: string, value: string | undefined) => void;
+  totalArmyPoints: number;
 };

@@ -16,6 +16,7 @@ const ArmyBuilder: React.FC = () => {
     prayerLoreSelected,
     spellLoreSelected,
     manifestationLoreSelected,
+    totalArmyPoints,
     setArmyField,
   } = useContext(ArmyContext);
   const router = useRouter();
@@ -151,6 +152,7 @@ const ArmyBuilder: React.FC = () => {
           </label>
         )}
       </div>
+      <div>Points: {totalArmyPoints}</div>
       <Army />
     </div>
   );
