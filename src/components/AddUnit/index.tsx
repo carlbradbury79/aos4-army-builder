@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { Unit as UnitType } from "@/types";
 
-const Unit: React.FC<{
-  regimentId: number;
+const AddUnit: React.FC<{
+  regimentId: string;
   canAddUnit: boolean;
   hasTooManyUnits: boolean;
 }> = ({ regimentId, canAddUnit, hasTooManyUnits }) => {
@@ -47,4 +47,4 @@ const Unit: React.FC<{
   );
 };
 
-export default Unit;
+export default AddUnit;

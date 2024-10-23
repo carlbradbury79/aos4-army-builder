@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import Hero from "@/components/Hero";
-import Unit from "@/components/Unit";
+import AddUnit from "@/components/AddUnit";
 import { armyTerms } from "@/constants/generalKeywords";
 import { canBeReinforced } from "@/helpers/canBeReinforced";
 
@@ -138,7 +138,7 @@ const Regiment = ({ regiment }) => {
               </button>
             </div>
           ))}
-          <Unit
+          <AddUnit
             regimentId={regiment.id}
             canAddUnit={canAddUnit}
             hasTooManyUnits={hasTooManyUnits}
