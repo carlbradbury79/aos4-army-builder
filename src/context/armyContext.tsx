@@ -58,7 +58,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const setHeroField = (
-    regimentId: number,
+    regimentId: string,
     key: string,
     value: string | boolean | undefined
   ) => {
@@ -72,7 +72,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }));
   };
 
-  const removeHeroField = (regimentId: number, field: string) => {
+  const removeHeroField = (regimentId: string, field: string) => {
     setArmy({
       ...army,
       regiments: army.regiments.map((regiment) =>
@@ -122,12 +122,12 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (army.regiments.length < 5) {
       setArmy({
         ...army,
-        regiments: [...army.regiments, { id: Date.now(), units: [] }],
+        regiments: [...army.regiments, { id: uuidv4(), units: [] }],
       });
     }
   };
 
-  const removeRegiment = (regimentId: number) => {
+  const removeRegiment = (regimentId: string) => {
     setArmy({
       ...army,
       regiments: army.regiments.filter(
@@ -136,7 +136,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const addHero = (regimentId: number, hero: Hero) => {
+  const addHero = (regimentId: string, hero: Hero) => {
     const heroWithUniqueId = { ...hero, id: uuidv4() };
     setArmy({
       ...army,
@@ -148,7 +148,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const removeHero = (regimentId: number) => {
+  const removeHero = (regimentId: string) => {
     setArmy({
       ...army,
       regiments: army.regiments.map((regiment) =>
@@ -157,7 +157,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const addUnit = (regimentId: number, unit: Unit) => {
+  const addUnit = (regimentId: string, unit: Unit) => {
     const unitWithUniqueId = { ...unit, id: uuidv4() };
     setArmy({
       ...army,
@@ -169,7 +169,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const removeUnit = (regimentId: number, unitId: string) => {
+  const removeUnit = (regimentId: string, unitId: string) => {
     setArmy({
       ...army,
       regiments: army.regiments.map((regiment) =>

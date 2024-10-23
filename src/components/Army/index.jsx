@@ -8,13 +8,7 @@ const ArmyList = () => {
   return (
     <div>
       <h1>Army List</h1>
-      <button
-        onClick={() =>
-          addRegiment({ id: Date.now(), name: "New Regiment", units: [] })
-        }
-      >
-        Add regiment
-      </button>
+      <button onClick={() => addRegiment()}>Add regiment</button>
       <ul>
         {army.regiments.map((regiment) => (
           <li key={regiment.id}>

@@ -21,7 +21,7 @@ export type Hero = UnitBase & {
 export type UnitTypes = Hero | Unit;
 
 export type Regiment = {
-  id: number;
+  id: string;
   hero?: Hero;
   units: Unit[];
 };
@@ -41,11 +41,11 @@ export type Army = {
 export type ArmyContextType = {
   army: Army;
   addRegiment: (regiment: Regiment) => void;
-  removeRegiment: (regimentId: number) => void;
-  addHero: (regimentId: number, hero: Hero) => void;
-  removeHero: (regimentId: number) => void;
-  addUnit: (regimentId: number, unit: Unit) => void;
-  removeUnit: (regimentId: number, unitId: string) => void;
+  removeRegiment: (regimentId: string) => void;
+  addHero: (regimentId: string, hero: Hero) => void;
+  removeHero: (regimentId: string) => void;
+  addUnit: (regimentId: string, unit: Unit) => void;
+  removeUnit: (regimentId: string, unitId: string) => void;
   getAvailableHeroes: () => Hero[];
   getAvailableUnits: () => Unit[];
   saveArmyToLocalStorage: () => void;
@@ -60,7 +60,7 @@ export type ArmyContextType = {
   availablePrayerLores: string[];
   availableBattleFormations: string[];
   setHeroField: (
-    regimentId: number,
+    regimentId: string,
     key: string,
     value: string | boolean | undefined
   ) => void;
@@ -71,6 +71,6 @@ export type ArmyContextType = {
   prayerLoreSelected: string | undefined;
   battleFormationSelected: string | undefined;
   manifestationLoreSelected: string | undefined;
-  removeHeroField: (regimentId: number, field: string) => void;
+  removeHeroField: (regimentId: string, field: string) => void;
   setArmyField: (key: string, value: string | undefined) => void;
 };
