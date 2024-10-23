@@ -2,6 +2,7 @@ import { keywords, skavenKeywords, skavenUnits } from "../constants";
 
 export const skaven = [
   {
+    id: "1",
     name: skavenUnits.greySeer,
     cost: 120,
     quantity: 1,
@@ -14,6 +15,7 @@ export const skaven = [
     ],
   },
   {
+    id: "2",
     name: skavenUnits.clanrats,
     cost: 150,
     quantity: 20,
@@ -25,6 +27,7 @@ export const skaven = [
     ],
   },
   {
+    id: "3",
     name: skavenUnits.stormvermin,
     cost: 140,
     quantity: 10,
@@ -36,6 +39,7 @@ export const skaven = [
     ],
   },
   {
+    id: "4",
     name: skavenUnits.warpfireThrowers,
     cost: 70,
     quantity: 1,
@@ -47,6 +51,7 @@ export const skaven = [
     ],
   },
   {
+    id: "5",
     name: skavenUnits.warplockJezzails,
     cost: 70,
     quantity: 1,
@@ -58,6 +63,7 @@ export const skaven = [
     ],
   },
   {
+    id: "6",
     name: skavenUnits.doomwheel,
     cost: 160,
     quantity: 1,
@@ -69,6 +75,7 @@ export const skaven = [
     ],
   },
   {
+    id: "7",
     name: skavenUnits.hellPitAbomination,
     cost: 220,
     quantity: 1,
@@ -80,6 +87,7 @@ export const skaven = [
     ],
   },
   {
+    id: "8",
     name: skavenUnits.deathmaster,
     cost: 100,
     quantity: 1,
@@ -91,6 +99,7 @@ export const skaven = [
     ],
   },
   {
+    id: "9",
     name: skavenUnits.nightRunners,
     cost: 100,
     quantity: 10,
@@ -102,6 +111,7 @@ export const skaven = [
     ],
   },
   {
+    id: "10",
     name: skavenUnits.acolyteglobadiers,
     cost: 80,
     quantity: 5,
@@ -113,6 +123,7 @@ export const skaven = [
     ],
   },
   {
+    id: "11",
     name: skavenUnits.warpGrinder,
     cost: 80,
     quantity: 1,
@@ -124,6 +135,7 @@ export const skaven = [
     ],
   },
   {
+    id: "12",
     name: skavenUnits.plagueMonks,
     cost: 70,
     quantity: 10,
@@ -135,6 +147,7 @@ export const skaven = [
     ],
   },
   {
+    id: "13",
     name: skavenUnits.plaguePriest,
     cost: 80,
     quantity: 1,
@@ -146,6 +159,7 @@ export const skaven = [
     ],
   },
   {
+    id: "14",
     name: skavenUnits.plagueclaw,
     cost: 100,
     quantity: 1,
@@ -157,6 +171,7 @@ export const skaven = [
     ],
   },
   {
+    id: "15",
     name: skavenUnits.krittokFoulblade,
     cost: 80,
     quantity: 1,
@@ -168,6 +183,7 @@ export const skaven = [
     ],
   },
   {
+    id: "16",
     name: skavenUnits.clawlord,
     cost: 100,
     quantity: 1,
@@ -179,6 +195,7 @@ export const skaven = [
     ],
   },
   {
+    id: "17",
     name: skavenUnits.clawlordOnGnawBeast,
     cost: 100,
     quantity: 1,
@@ -190,6 +207,7 @@ export const skaven = [
     ],
   },
   {
+    id: "18",
     name: skavenUnits.masterMoulder,
     cost: 100,
     quantity: 1,
@@ -201,6 +219,7 @@ export const skaven = [
     ],
   },
   {
+    id: "19",
     name: skavenUnits.broodTerrror,
     cost: 100,
     quantity: 1,
@@ -212,6 +231,7 @@ export const skaven = [
     ],
   },
   {
+    id: "20",
     name: skavenUnits.ratOgre,
     cost: 100,
     quantity: 1,
@@ -223,6 +243,7 @@ export const skaven = [
     ],
   },
   {
+    id: "21",
     name: skavenUnits.stormFiends,
     cost: 140,
     quantity: 3,
@@ -234,6 +255,7 @@ export const skaven = [
     ],
   },
   {
+    id: "22",
     name: skavenUnits.warlockEngineer,
     cost: 100,
     quantity: 1,

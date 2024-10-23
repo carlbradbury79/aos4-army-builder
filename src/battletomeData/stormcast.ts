@@ -1,5 +1,6 @@
 export const stormcast = [
   {
+    id: "1",
     name: "Lord-Celestant",
     cost: 100,
     quantity: 1,
@@ -8,6 +9,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "2",
     name: "Lord-Relictor",
     cost: 100,
     quantity: 1,
@@ -16,6 +18,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "3",
     name: "Lord-Castellant",
     cost: 100,
     quantity: 1,
@@ -24,6 +27,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "4",
     name: "Knight-Heraldor",
     cost: 100,
     quantity: 1,
@@ -32,6 +36,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "5",
     name: "Knight-Venator",
     cost: 100,
     quantity: 1,
@@ -40,6 +45,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "6",
     name: "Knight-Azyros",
     cost: 100,
     quantity: 1,
@@ -48,6 +54,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "7",
     name: "Knight-Incantor",
     cost: 100,
     quantity: 1,
@@ -56,6 +63,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "8",
     name: "Lord-Exorcist",
     cost: 100,
     quantity: 1,
@@ -64,6 +72,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "9",
     name: "Lord-Ordinator",
     cost: 100,
     quantity: 1,
@@ -72,6 +81,7 @@ export const stormcast = [
     factionKeywords: ["stormcast"],
   },
   {
+    id: "10",
     name: "Libertors",
     cost: 100,
     quantity: 5,

@@ -1,6 +1,6 @@
 type UnitBase = {
   name: string;
-  id?: string;
+  id: string;
   cost: number;
   quantity: number;
   keywords: string[];
