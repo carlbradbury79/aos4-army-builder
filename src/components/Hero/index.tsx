@@ -3,7 +3,7 @@ import { ArmyContext } from "@/context/armyContext";
 import { Hero as HeroType } from "@/types";
 import { armyTerms } from "@/constants/generalKeywords";
 
-const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
+const Hero: React.FC<{ regimentId: string; hero?: any }> = ({
   regimentId,
   hero,
 }) => {
@@ -12,7 +12,6 @@ const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
     removeHero,
     getAvailableHeroes,
     setHeroField,
-    removeHeroField,
     isGeneralSelected,
   } = useContext(ArmyContext);
   const [selectedHeroName, setSelectedHeroName] = useState<string | undefined>(
@@ -40,7 +39,9 @@ const Hero: React.FC<{ regimentId: number; hero?: any }> = ({
           <button onClick={() => removeHero(regimentId)}>Remove Hero</button>
           {hero.isGeneral && (
             <button
-              onClick={() => removeHeroField(regimentId, armyTerms.isGeneral)}
+              onClick={() =>
+                setHeroField(regimentId, armyTerms.isGeneral, undefined)
+              }
             >
               Remove General
             </button>

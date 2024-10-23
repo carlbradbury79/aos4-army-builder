@@ -72,17 +72,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }));
   };
 
-  const removeHeroField = (regimentId: string, field: string) => {
-    setArmy({
-      ...army,
-      regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId
-          ? { ...regiment, hero: { ...regiment.hero, [field]: undefined } }
-          : regiment
-      ),
-    });
-  };
-
   const isHeroicTraitSelected = army.regiments.some(
     (regiment) => regiment.hero?.heroicTrait
   );
@@ -259,7 +248,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         prayerLoreSelected,
         battleFormationSelected,
         manifestationLoreSelected,
-        removeHeroField,
         setArmyField,
         totalArmyPoints,
         reinforceUnit,

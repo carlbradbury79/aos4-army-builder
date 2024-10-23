@@ -12,7 +12,6 @@ const Regiment = ({ regiment }) => {
     availableArtifactsOfPower,
     setHeroField,
     isHeroicTraitSelected,
-    removeHeroField,
     isArtefactOfPowerSelected,
     reinforceUnit,
   } = useContext(ArmyContext);
@@ -40,7 +39,11 @@ const Regiment = ({ regiment }) => {
                     Heroic Trait: {regiment.hero.heroicTrait}
                     <button
                       onClick={() =>
-                        removeHeroField(regiment.id, armyTerms.heroicTrait)
+                        setHeroField(
+                          regiment.id,
+                          armyTerms.heroicTrait,
+                          undefined
+                        )
                       }
                     >
                       Remove
@@ -75,7 +78,11 @@ const Regiment = ({ regiment }) => {
                   Artefact of Power: {regiment.hero.artefactOfPower}
                   <button
                     onClick={() =>
-                      removeHeroField(regiment.id, armyTerms.artefactOfPower)
+                      setHeroField(
+                        regiment.id,
+                        armyTerms.artefactOfPower,
+                        undefined
+                      )
                     }
                   >
                     Remove
