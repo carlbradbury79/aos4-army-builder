@@ -183,6 +183,32 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
+  const reinforceUnit = (
+    regimentId: string,
+    unitId: string,
+    reinforce: boolean
+  ) => {
+    setArmy({
+      ...army,
+      regiments: army.regiments.map((regiment) =>
+        regiment.id === regimentId
+          ? {
+              ...regiment,
+              units: regiment.units.map((unit) => {
+                const quantity = reinforce
+                  ? unit.quantity * 2
+                  : unit.quantity / 2;
+                const cost = reinforce ? unit.cost * 2 : unit.cost / 2;
+                return unit.id === unitId
+                  ? { ...unit, isReinforced: reinforce, quantity, cost }
+                  : unit;
+              }),
+            }
+          : regiment
+      ),
+    });
+  };
+
   const saveArmyToLocalStorage = () => {
     localStorage.setItem("army", JSON.stringify(army));
   };
@@ -236,6 +262,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeHeroField,
         setArmyField,
         totalArmyPoints,
+        reinforceUnit,
       }}
     >
       {children}

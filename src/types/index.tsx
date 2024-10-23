@@ -74,4 +74,9 @@ export type ArmyContextType = {
   removeHeroField: (regimentId: string, field: string) => void;
   setArmyField: (key: string, value: string | undefined) => void;
   totalArmyPoints: number;
+  reinforceUnit: (
+    regimentId: string,
+    unitId: string,
+    reinforce: boolean
+  ) => void;
 };

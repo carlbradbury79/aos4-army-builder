@@ -3,6 +3,7 @@ import { ArmyContext } from "@/context/armyContext";
 import Hero from "@/components/Hero";
 import Unit from "@/components/Unit";
 import { armyTerms } from "@/constants/generalKeywords";
+import { canBeReinforced } from "@/helpers/canBeReinforced";
 
 const Regiment = ({ regiment }) => {
   const {
@@ -13,6 +14,7 @@ const Regiment = ({ regiment }) => {
     isHeroicTraitSelected,
     removeHeroField,
     isArtefactOfPowerSelected,
+    reinforceUnit,
   } = useContext(ArmyContext);
 
   const regimentHasGeneral = regiment?.hero?.isGeneral;
@@ -109,7 +111,21 @@ const Regiment = ({ regiment }) => {
           <h3>Units</h3>
           {regiment.units.map((unit) => (
             <div key={unit.id}>
-              {unit.name}
+              {unit.quantity} {unit.name} {unit.isReinforced && "(Reinforced)"}{" "}
+              {canBeReinforced(unit) &&
+                (unit.isReinforced ? (
+                  <button
+                    onClick={() => reinforceUnit(regiment.id, unit.id, false)}
+                  >
+                    Undo reinforce
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => reinforceUnit(regiment.id, unit.id, true)}
+                  >
+                    Reinforce
+                  </button>
+                ))}
               <button onClick={() => removeUnit(regiment.id, unit.id)}>
                 Remove Unit
               </button>
