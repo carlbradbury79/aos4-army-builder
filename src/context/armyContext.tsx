@@ -107,6 +107,14 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       (unit) => !unit.keywords.includes(keywords.hero)
     );
 
+  const getAvailableSubordinateUnits = (hero: Hero): UnitTypes[] => {
+    const availableUnits = getAvailableUnits();
+    const subordinateUnits = availableUnits.filter((unit) =>
+      hero.subordinates.includes(unit.name)
+    );
+    return subordinateUnits;
+  };
+
   const addRegiment = () => {
     if (army.regiments.length < 5) {
       setArmy({
@@ -251,6 +259,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setArmyField,
         totalArmyPoints,
         reinforceUnit,
+        getAvailableSubordinateUnits,
       }}
     >
       {children}

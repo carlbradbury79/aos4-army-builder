@@ -123,6 +123,7 @@ const Regiment = ({ regiment }) => {
             regimentId={regiment.id}
             canAddUnit={canAddUnit}
             hasTooManyUnits={hasTooManyUnits}
+            hero={regiment.hero}
           />
         </div>
       )}

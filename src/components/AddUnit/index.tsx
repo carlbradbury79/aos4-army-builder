@@ -1,18 +1,19 @@
 import React, { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
-import { Unit as UnitType } from "@/types";
+import { Unit as UnitType, Hero } from "@/types";
 
 const AddUnit: React.FC<{
   regimentId: string;
   canAddUnit: boolean;
   hasTooManyUnits: boolean;
-}> = ({ regimentId, canAddUnit, hasTooManyUnits }) => {
-  const { addUnit, getAvailableUnits } = useContext(ArmyContext);
+  hero: Hero;
+}> = ({ regimentId, canAddUnit, hasTooManyUnits, hero }) => {
+  const { addUnit, getAvailableSubordinateUnits } = useContext(ArmyContext);
   const [selectedUnitName, setSelectedUnitName] = useState<string | undefined>(
     undefined
   );
 
-  const availableUnits = getAvailableUnits();
+  const availableUnits = getAvailableSubordinateUnits(hero);
 
   const handleAddUnit = () => {
     const selectedUnit = availableUnits.find(
@@ -35,7 +36,7 @@ const AddUnit: React.FC<{
             <option value="">Select Unit</option>
             {availableUnits.map((unit: UnitType) => (
               <option key={unit.name} value={unit.name}>
-                {unit.name}
+                {unit.quantity} {unit.name} - {unit.cost}pts
               </option>
             ))}
           </select>

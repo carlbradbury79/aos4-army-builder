@@ -78,4 +78,5 @@ export type ArmyContextType = {
     unitId: string,
     reinforce: boolean
   ) => void;
+  getAvailableSubordinateUnits: (hero: Hero) => UnitTypes[];
 };
