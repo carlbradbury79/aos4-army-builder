@@ -7,13 +7,12 @@ import Unit from "@/components/Unit";
 
 const Regiment = ({ regiment }) => {
   const {
-    removeUnit,
     availableHeroicTraits,
     availableArtifactsOfPower,
     setHeroField,
     isHeroicTraitSelected,
     isArtefactOfPowerSelected,
-    reinforceUnit,
+    removeRegiment,
   } = useContext(ArmyContext);
 
   const regimentHasGeneral = regiment?.hero?.isGeneral;
@@ -26,6 +25,8 @@ const Regiment = ({ regiment }) => {
 
   return (
     <div>
+      <button onClick={() => removeRegiment(regiment.id)}>Remove</button>
+
       <h2>Regiment</h2>
       <Hero regimentId={regiment.id} hero={regiment.hero} />
       {regiment.hero && (

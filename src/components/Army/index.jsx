@@ -9,15 +9,11 @@ const ArmyList = () => {
     <div>
       <h1>Army List</h1>
       <button onClick={() => addRegiment()}>Add regiment</button>
-      <ul>
+      <div>
         {army.regiments.map((regiment) => (
-          <li key={regiment.id}>
-            {regiment.name}{" "}
-            <button onClick={() => removeRegiment(regiment.id)}>Remove</button>
-            <Regiment regiment={regiment} />
-          </li>
+          <Regiment regiment={regiment} key={regiment.id} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
