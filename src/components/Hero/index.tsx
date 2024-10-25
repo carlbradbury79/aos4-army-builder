@@ -65,7 +65,7 @@ const Hero: React.FC<{ regimentId: string; hero?: any }> = ({
             <option value="">Select Hero</option>
             {availableHeroes.map((hero: HeroType) => (
               <option key={hero.name} value={hero.name}>
-                {hero.name}
+                {hero.name} {hero.cost}pts
               </option>
             ))}
           </select>
