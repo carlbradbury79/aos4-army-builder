@@ -13,7 +13,7 @@ const AddUnit: React.FC<{
     undefined
   );
 
-  const availableUnits = getAvailableSubordinateUnits(hero);
+  const availableUnits = getAvailableSubordinateUnits(hero, regimentId);
 
   const handleAddUnit = () => {
     const selectedUnit = availableUnits.find(

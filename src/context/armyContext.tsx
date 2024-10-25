@@ -107,11 +107,31 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       (unit) => !unit.keywords.includes(keywords.hero)
     );
 
-  const getAvailableSubordinateUnits = (hero: Hero): UnitTypes[] => {
-    const availableUnits = getAvailableUnits();
-    const subordinateUnits = availableUnits.filter((unit) =>
-      hero.subordinates.includes(unit.name)
-    );
+  const getAvailableSubordinateUnits = (
+    hero: Hero,
+    regimentId: string
+  ): UnitTypes[] => {
+    const availableUnits = filterUnitsByFaction(faction);
+    const regiment = army.regiments.find((r) => r.id === regimentId);
+
+    const subordinateUnits = availableUnits.filter((unit) => {
+      const matchingSubordinate = hero.subordinates.find(
+        (sub) =>
+          unit.factionKeywords.some((keyword) => keyword === sub.keyword) &&
+          ((sub.hero && unit.keywords.includes(keywords.hero)) ||
+            !unit.keywords.includes(keywords.hero))
+      );
+      if (matchingSubordinate) {
+        if (matchingSubordinate.max > 0) {
+          const isAlreadyIncluded = regiment?.units.some(
+            (regimentUnit) => regimentUnit.name === unit.name
+          );
+          return !isAlreadyIncluded;
+        }
+        return true;
+      }
+      return false;
+    });
     return subordinateUnits;
   };
 
