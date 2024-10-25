@@ -6,6 +6,8 @@ export const keywords = {
   skryre: "skryre",
   moulder: "moulder",
   eshin: "eshin",
+  pestilens: "pestilens",
+  overclaw: "Overclaw",
 };
 
 export const units = {

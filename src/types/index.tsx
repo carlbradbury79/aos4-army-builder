@@ -12,7 +12,13 @@ export type Unit = UnitBase & {
 };
 
 export type Hero = UnitBase & {
-  subordinates: Unit[];
+  subordinates: [
+    {
+      keyword: string;
+      max: number;
+      hero?: boolean;
+    }
+  ];
   isGeneral?: boolean | undefined;
   heroicTrait?: string | undefined;
   artefactOfPower?: string | undefined;
@@ -78,5 +84,5 @@ export type ArmyContextType = {
     unitId: string,
     reinforce: boolean
   ) => void;
-  getAvailableSubordinateUnits: (hero: Hero) => UnitTypes[];
+  getAvailableSubordinateUnits: (hero: Hero, regimentId: string) => UnitTypes[];
 };

@@ -1,3 +1,4 @@
+import { skavenGeneralKeywords } from "@/constants/skavenKeywords";
 import { keywords, skavenKeywords, skavenUnits } from "../constants";
 
 export const skaven = [
@@ -6,7 +7,10 @@ export const skaven = [
     name: skavenUnits.greySeer,
     cost: 120,
     quantity: 1,
-    subordinates: [skavenUnits.clanrats],
+    subordinates: [
+      { keyword: skavenKeywords.overclaw, max: 1, hero: true },
+      { keyword: skavenKeywords.skaven, max: 0 },
+    ],
     keywords: [keywords.hero, keywords.wizard[1], keywords.infantry],
     factionKeywords: [
       skavenKeywords.chaos,
@@ -24,6 +28,7 @@ export const skaven = [
       skavenKeywords.chaos,
       skavenKeywords.skaven,
       skavenKeywords.verminus,
+      skavenUnits.clanrats,
     ],
   },
   {
@@ -96,6 +101,7 @@ export const skaven = [
       skavenKeywords.chaos,
       skavenKeywords.skaven,
       skavenKeywords.masterclan,
+      skavenKeywords.overclaw,
     ],
   },
   {
@@ -176,6 +182,7 @@ export const skaven = [
     cost: 80,
     quantity: 1,
     keywords: [keywords.hero],
+    subordinates: [{ keyword: skavenKeywords.verminus, max: 0 }],
     factionKeywords: [
       skavenKeywords.chaos,
       skavenKeywords.skaven,
@@ -188,10 +195,12 @@ export const skaven = [
     cost: 100,
     quantity: 1,
     keywords: [keywords.hero],
+    subordinates: [{ keyword: skavenKeywords.verminus, max: 0 }],
     factionKeywords: [
       skavenKeywords.chaos,
       skavenKeywords.skaven,
       skavenKeywords.masterclan,
+      skavenKeywords.overclaw,
     ],
   },
   {
@@ -259,6 +268,10 @@ export const skaven = [
     name: skavenUnits.warlockEngineer,
     cost: 100,
     quantity: 1,
+    subordinates: [
+      { keyword: skavenKeywords.skryre, max: 0 },
+      { keyword: skavenUnits.clanrats, max: 1 },
+    ],
     keywords: [keywords.hero, keywords.wizard[1]],
     factionKeywords: [
       skavenKeywords.chaos,
