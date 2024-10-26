@@ -62,14 +62,16 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     key: string,
     value: string | boolean | undefined
   ) => {
-    setArmy(() => ({
+    setArmy({
       ...army,
-      regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId
-          ? { ...regiment, hero: { ...regiment.hero, [key]: value } }
-          : regiment
-      ),
-    }));
+      regiments: army.regiments.map((regiment) => {
+        const hero = regiment.hero;
+        const updatedHero = hero ? { ...hero, [key]: value } : hero;
+        return regiment.id === regimentId
+          ? { ...regiment, hero: updatedHero }
+          : regiment;
+      }),
+    });
   };
 
   const isHeroicTraitSelected = army.regiments.some(
@@ -115,7 +117,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const regiment = army.regiments.find((r) => r.id === regimentId);
 
     const subordinateUnits = availableUnits.filter((unit) => {
-      const matchingSubordinate = hero.subordinates.find(
+      const matchingSubordinate = hero?.subordinates?.find(
         (sub) =>
           unit.factionKeywords.some((keyword) => keyword === sub.keyword) &&
           ((sub.hero && unit.keywords.includes(keywords.hero)) ||
