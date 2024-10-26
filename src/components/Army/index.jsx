@@ -3,7 +3,7 @@ import { ArmyContext } from "../../context/armyContext";
 import Regiment from "../Regiment";
 
 const ArmyList = () => {
-  const { army, addRegiment, removeRegiment } = useContext(ArmyContext);
+  const { army, addRegiment } = useContext(ArmyContext);
 
   return (
     <div>
