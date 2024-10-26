@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { armyTerms } from "@/constants/generalKeywords";
 import { Hero as HeroType } from "@/types";
+import { Addon } from "./Addon";
+import { SelectAddon } from "./SelectAddon";
 
 const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
   regimentId,
@@ -47,74 +49,40 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
         <>
           <div>
             {hero.heroicTrait && (
-              <div>
-                Heroic Trait: {hero.heroicTrait}
-                <button
-                  onClick={() =>
-                    setHeroField(regimentId, armyTerms.heroicTrait, undefined)
-                  }
-                >
-                  Remove
-                </button>
-              </div>
+              <Addon
+                label="Heroic Trait"
+                addonKey={armyTerms.heroicTrait}
+                addonValue={hero.heroicTrait}
+                regimentId={regimentId}
+              />
             )}
             {!isHeroicTraitSelected && (
-              <label>
-                Heroic Trait:
-                <select
-                  value={hero.heroicTrait}
-                  onChange={(e) =>
-                    setHeroField(
-                      regimentId,
-                      armyTerms.heroicTrait,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option value="">Select Heroic Trait</option>
-                  {availableHeroicTraits.map((trait) => (
-                    <option key={trait} value={trait}>
-                      {trait}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <SelectAddon
+                label="Heroic Trait"
+                addonKey={armyTerms.heroicTrait}
+                addonValue={hero.heroicTrait}
+                regimentId={regimentId}
+                availableAddons={availableHeroicTraits}
+              />
             )}
           </div>
           {hero.artefactOfPower && (
-            <div>
-              Artefact of Power: {hero.artefactOfPower}
-              <button
-                onClick={() =>
-                  setHeroField(regimentId, armyTerms.artefactOfPower, undefined)
-                }
-              >
-                Remove
-              </button>
-            </div>
+            <Addon
+              label="Artefact of Power"
+              addonKey={armyTerms.artefactOfPower}
+              addonValue={hero.artefactOfPower}
+              regimentId={regimentId}
+            />
           )}
           <div>
             {!isArtefactOfPowerSelected && (
-              <label>
-                Artefact of Power:
-                <select
-                  value={hero.artefactOfPower}
-                  onChange={(e) =>
-                    setHeroField(
-                      regimentId,
-                      armyTerms.artefactOfPower,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option value="">Select Artefact of Power</option>
-                  {availableArtifactsOfPower.map((artefact) => (
-                    <option key={artefact} value={artefact}>
-                      {artefact}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <SelectAddon
+                label="Artefact of Power"
+                addonKey={armyTerms.artefactOfPower}
+                addonValue={hero.artefactOfPower}
+                regimentId={regimentId}
+                availableAddons={availableArtifactsOfPower}
+              />
             )}
           </div>
         </>
