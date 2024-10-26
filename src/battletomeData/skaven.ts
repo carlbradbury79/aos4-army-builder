@@ -1,4 +1,3 @@
-import { skavenGeneralKeywords } from "@/constants/skavenKeywords";
 import { keywords, skavenKeywords, skavenUnits } from "../constants";
 
 export const skaven = [

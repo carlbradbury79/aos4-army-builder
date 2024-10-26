@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArmyContext } from "@/context/armyContext";
 import Army from "@/components/Army";
@@ -18,7 +18,6 @@ const ArmyBuilder: React.FC = () => {
     spellLoreSelected,
     manifestationLoreSelected,
     totalArmyPoints,
-    setArmyField,
   } = useContext(ArmyContext);
   const router = useRouter();
 

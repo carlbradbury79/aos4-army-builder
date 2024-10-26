@@ -1,14 +1,7 @@
 "use client";
 import React, { createContext, ReactNode, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import {
-  ArmyContextType,
-  Regiment,
-  Army,
-  Hero,
-  Unit,
-  UnitTypes,
-} from "@/types";
+import { ArmyContextType, Army, Hero, Unit, UnitTypes } from "@/types";
 import {
   battletomeData,
   genericManifestationLores,
@@ -90,10 +83,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const prayerLoreSelected = army.prayerLore;
   const battleFormationSelected = army.battleFormation;
   const manifestationLoreSelected = army.manifestationLore;
-
-  const setBattleFormation = (battleFormation: string) => {
-    setArmy((prevArmy) => ({ ...prevArmy, battleFormation }));
-  };
 
   const filterUnitsByFaction = (faction: string): UnitTypes[] => {
     return battletomeData[faction as keyof typeof battletomeData];
