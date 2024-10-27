@@ -1,6 +1,6 @@
 import {
-  skaven,
-  skavenManifestationLore,
+  skavenBattleProfiles as skaven,
+  manifestationLore as skavenManifestationLore,
   spellLores as skavenSpellLores,
   prayerLores as skavenPrayerLores,
   heroicTraits as skavenHeroicTraits,

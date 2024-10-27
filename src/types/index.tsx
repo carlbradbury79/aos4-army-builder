@@ -11,14 +11,14 @@ export type Unit = UnitBase & {
   isReinforced?: boolean;
 };
 
+type subordinates = {
+  keyword: string;
+  max: number;
+  hero?: boolean;
+};
+
 export type Hero = UnitBase & {
-  subordinates: [
-    {
-      keyword: string;
-      max: number;
-      hero?: boolean;
-    }
-  ];
+  subordinates: subordinates[];
   isGeneral?: boolean | undefined;
   heroicTrait?: string | undefined;
   artefactOfPower?: string | undefined;
