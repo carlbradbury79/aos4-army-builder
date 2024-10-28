@@ -39,7 +39,7 @@ export type Army = {
   prayerLore?: string | undefined;
   manifestationLore?: string | undefined;
   regiments: Regiment[];
-  auxiliaryUnits?: Unit[];
+  auxiliaryUnits: Unit[];
   armyPoints?: number;
   numberOfWounds?: number;
 };
@@ -85,4 +85,7 @@ export type ArmyContextType = {
     reinforce: boolean
   ) => void;
   getAvailableSubordinateUnits: (hero: Hero, regimentId: string) => UnitTypes[];
+  addAuxUnit: (unit: Unit) => void;
+  removeAuxUnit: (unitId: string) => void;
+  reinforceAuxUnit: (unitId: string, reinforce: boolean) => void;
 };

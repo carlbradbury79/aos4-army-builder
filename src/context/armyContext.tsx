@@ -19,7 +19,7 @@ export const ArmyContext = createContext<ArmyContextType>(
 );
 
 const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [army, setArmy] = useState<Army>({ regiments: [] });
+  const [army, setArmy] = useState<Army>({ regiments: [], auxiliaryUnits: [] });
   const [faction, setFaction] = useState<string>("");
 
   const availableFactions = Object.keys(battletomeData);
@@ -94,9 +94,11 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     ) as Hero[];
 
   const getAvailableUnits = () =>
-    filterUnitsByFaction(faction).filter(
-      (unit) => !unit.keywords.includes(keywords.hero)
-    );
+    faction
+      ? filterUnitsByFaction(faction).filter(
+          (unit) => !unit.keywords.includes(keywords.hero)
+        )
+      : [];
 
   const getAvailableSubordinateUnits = (
     hero: Hero,
@@ -176,6 +178,33 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       ),
     });
   };
+  const addAuxUnit = (unit: Unit) => {
+    const unitWithUniqueId = { ...unit, id: uuidv4() };
+    setArmy({
+      ...army,
+      auxiliaryUnits: [...army.auxiliaryUnits, unitWithUniqueId],
+    });
+  };
+
+  const removeAuxUnit = (unitId: string) => {
+    setArmy({
+      ...army,
+      auxiliaryUnits: army.auxiliaryUnits.filter((unit) => unit.id !== unitId),
+    });
+  };
+
+  const reinforceAuxUnit = (unitId: string, reinforce: boolean) => {
+    setArmy({
+      ...army,
+      auxiliaryUnits: army.auxiliaryUnits.map((unit) => {
+        const quantity = reinforce ? unit.quantity * 2 : unit.quantity / 2;
+        const cost = reinforce ? unit.cost * 2 : unit.cost / 2;
+        return unit.id === unitId
+          ? { ...unit, isReinforced: reinforce, quantity, cost }
+          : unit;
+      }),
+    });
+  };
 
   const removeUnit = (regimentId: string, unitId: string) => {
     setArmy({
@@ -228,13 +257,14 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const totalArmyPoints = army.regiments.reduce(
-    (acc, regiment) =>
-      acc +
-      (regiment?.hero?.cost ?? 0) +
-      regiment.units.reduce((acc, unit) => acc + unit.cost, 0),
-    0
-  );
+  const totalArmyPoints =
+    army.regiments.reduce(
+      (acc, regiment) =>
+        acc +
+        (regiment?.hero?.cost ?? 0) +
+        regiment.units.reduce((acc, unit) => acc + unit.cost, 0),
+      0
+    ) + army.auxiliaryUnits.reduce((acc, unit) => acc + unit.cost, 0);
 
   return (
     <ArmyContext.Provider
@@ -271,6 +301,9 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         totalArmyPoints,
         reinforceUnit,
         getAvailableSubordinateUnits,
+        addAuxUnit,
+        removeAuxUnit,
+        reinforceAuxUnit,
       }}
     >
       {children}
