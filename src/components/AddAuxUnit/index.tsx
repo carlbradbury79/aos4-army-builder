@@ -10,10 +10,9 @@ const AddAuxUnit: React.FC = () => {
 
   const availableUnits = getAvailableUnits();
 
-  const handleAddUnit = () => {
-    const selectedUnit = availableUnits.find(
-      (u) => u.name === selectedUnitName
-    );
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const unitName = e.target.value;
+    const selectedUnit = availableUnits.find((u) => u.name === unitName);
     if (selectedUnit) {
       addAuxUnit(selectedUnit);
       setSelectedUnitName(undefined);
@@ -22,10 +21,7 @@ const AddAuxUnit: React.FC = () => {
 
   return (
     <div>
-      <select
-        value={selectedUnitName ?? ""}
-        onChange={(e) => setSelectedUnitName(e.target.value)}
-      >
+      <select value={selectedUnitName ?? ""} onChange={handleSelectChange}>
         <option value="">Select Unit</option>
         {availableUnits &&
           availableUnits.map((unit: UnitType) => (
@@ -34,7 +30,6 @@ const AddAuxUnit: React.FC = () => {
             </option>
           ))}
       </select>
-      <button onClick={handleAddUnit}>Add Unit</button>
     </div>
   );
 };

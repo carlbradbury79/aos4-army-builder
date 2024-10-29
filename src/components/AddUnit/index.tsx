@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { ArmyContext } from "@/context/armyContext";
 import { Unit as UnitType, Hero } from "@/types";
+import { useContext, useState } from "react";
+import { ArmyContext } from "@/context/armyContext";
 
 const AddUnit: React.FC<{
   regimentId: string;
@@ -15,10 +15,9 @@ const AddUnit: React.FC<{
 
   const availableUnits = getAvailableSubordinateUnits(hero, regimentId);
 
-  const handleAddUnit = () => {
-    const selectedUnit = availableUnits.find(
-      (u) => u.name === selectedUnitName
-    );
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const unitName = e.target.value;
+    const selectedUnit = availableUnits.find((u) => u.name === unitName);
     if (selectedUnit) {
       addUnit(regimentId, selectedUnit);
       setSelectedUnitName(undefined);
@@ -29,10 +28,7 @@ const AddUnit: React.FC<{
     <>
       {canAddUnit && (
         <div>
-          <select
-            value={selectedUnitName ?? ""}
-            onChange={(e) => setSelectedUnitName(e.target.value)}
-          >
+          <select value={selectedUnitName ?? ""} onChange={handleSelectChange}>
             <option value="">Select Unit</option>
             {availableUnits.map((unit: UnitType) => (
               <option key={unit.name} value={unit.name}>
@@ -40,7 +36,6 @@ const AddUnit: React.FC<{
               </option>
             ))}
           </select>
-          <button onClick={handleAddUnit}>Add Unit</button>
         </div>
       )}
       {hasTooManyUnits && <p>Too many units</p>}

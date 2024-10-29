@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { Hero as HeroType } from "@/types";
 
@@ -7,22 +7,21 @@ const AddHero: React.FC<{ regimentId: string }> = ({ regimentId }) => {
   const [selectedHeroName, setSelectedHeroName] = useState<string | undefined>(
     undefined
   );
-  const handleAddHero = () => {
-    const selectedHero = availableHeroes.find(
-      (h) => h.name === selectedHeroName
-    );
+
+  const availableHeroes = getAvailableHeroes();
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const heroName = e.target.value;
+    const selectedHero = availableHeroes.find((h) => h.name === heroName);
     if (selectedHero) {
       addHero(regimentId, selectedHero);
       setSelectedHeroName(undefined);
     }
   };
-  const availableHeroes = getAvailableHeroes();
+
   return (
     <div>
-      <select
-        value={selectedHeroName}
-        onChange={(e) => setSelectedHeroName(e.target.value)}
-      >
+      <select value={selectedHeroName ?? ""} onChange={handleSelectChange}>
         <option value="">Select Hero</option>
         {availableHeroes.map((hero: HeroType) => (
           <option key={hero.name} value={hero.name}>
@@ -30,7 +29,6 @@ const AddHero: React.FC<{ regimentId: string }> = ({ regimentId }) => {
           </option>
         ))}
       </select>
-      <button onClick={handleAddHero}>Add Hero</button>
     </div>
   );
 };
