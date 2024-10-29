@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { canBeReinforced } from "@/helpers/canBeReinforced";
 import { Unit as UnitType } from "@/types";
+import { InlineButton, CloseButton } from "@/app/styles/buttons.style";
+import { UnitName, UnitClose } from "../Unit/index.style";
 
 type UnitProps = {
   unit: UnitType;
@@ -10,20 +12,26 @@ type UnitProps = {
 const AuxUnit: React.FC<UnitProps> = ({ unit }) => {
   const { removeAuxUnit, reinforceAuxUnit } = useContext(ArmyContext);
   return (
-    <div key={unit.id}>
-      {unit.quantity} {unit.name} {unit.isReinforced && "(Reinforced)"}{" "}
-      {canBeReinforced(unit) &&
-        (unit.isReinforced ? (
-          <button onClick={() => reinforceAuxUnit(unit.id, false)}>
-            Undo reinforce
-          </button>
-        ) : (
-          <button onClick={() => reinforceAuxUnit(unit.id, true)}>
-            Reinforce
-          </button>
-        ))}
-      <button onClick={() => removeAuxUnit(unit.id)}>Remove Unit</button>
-    </div>
+    <UnitName key={unit.id}>
+      <div>
+        {unit.quantity} {unit.name} {unit.isReinforced && "(Reinforced)"}{" "}
+      </div>
+      <UnitClose>
+        {canBeReinforced(unit) &&
+          (unit.isReinforced ? (
+            <InlineButton onClick={() => reinforceAuxUnit(unit.id, false)}>
+              &#128100;&#128100;
+            </InlineButton>
+          ) : (
+            <InlineButton onClick={() => reinforceAuxUnit(unit.id, true)}>
+              &#128100;
+            </InlineButton>
+          ))}
+        <CloseButton onClick={() => removeAuxUnit(unit.id)}>
+          &#10006;
+        </CloseButton>
+      </UnitClose>
+    </UnitName>
   );
 };
 

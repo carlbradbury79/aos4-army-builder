@@ -4,6 +4,8 @@ import { armyTerms } from "@/constants/generalKeywords";
 import { Hero as HeroType } from "@/types";
 import { Addon } from "./Addon";
 import { SelectAddon } from "./SelectAddon";
+import { InlineButton, CloseButton } from "@/app/styles/buttons.style";
+import { HeroName, HeroGeneralClose, HeroWrapper } from "./index.style";
 
 const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
   regimentId,
@@ -22,31 +24,38 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
   const canHeroTakeTraitsOrArtefacts = !hero?.keywords?.includes("unique");
 
   return (
-    <div>
+    <HeroWrapper>
       <h3>Hero</h3>
-      <div>
-        {hero.name} {hero.isGeneral && "(General)"}
-        <button onClick={() => removeHero(regimentId)}>Remove Hero</button>
-        {hero.isGeneral && (
-          <button
-            onClick={() =>
-              setHeroField(regimentId, armyTerms.isGeneral, undefined)
-            }
-          >
-            Remove General
-          </button>
-        )}
-        {!hero.isGeneral && !isGeneralSelected && (
-          <button
-            onClick={() => setHeroField(regimentId, armyTerms.isGeneral, true)}
-          >
-            Set as General
-          </button>
-        )}
-      </div>
-      <h3>Hero Options</h3>
+      <HeroName>
+        <div>{hero.name}</div>
+        <HeroGeneralClose>
+          {hero.isGeneral && (
+            <InlineButton
+              borderColor="#ff0000"
+              onClick={() =>
+                setHeroField(regimentId, armyTerms.isGeneral, undefined)
+              }
+            >
+              &#9819;
+            </InlineButton>
+          )}
+          {!hero.isGeneral && !isGeneralSelected && (
+            <InlineButton
+              onClick={() =>
+                setHeroField(regimentId, armyTerms.isGeneral, true)
+              }
+            >
+              &#9819;
+            </InlineButton>
+          )}
+          <CloseButton onClick={() => removeHero(regimentId)}>
+            &#10006;
+          </CloseButton>
+        </HeroGeneralClose>
+      </HeroName>
       {canHeroTakeTraitsOrArtefacts && (
         <>
+          <h4>Hero Options</h4>
           <div>
             {hero.heroicTrait && (
               <Addon
@@ -87,7 +96,7 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
           </div>
         </>
       )}
-    </div>
+    </HeroWrapper>
   );
 };
 
