@@ -9,6 +9,7 @@ type UnitBase = {
 
 export type Unit = UnitBase & {
   isReinforced?: boolean;
+  cannotBeReinforced?: boolean;
 };
 
 type subordinates = {
