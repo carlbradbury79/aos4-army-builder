@@ -5,6 +5,7 @@ import { ArmyContext } from "@/context/armyContext";
 import Army from "@/components/Army";
 import { armyTerms } from "@/constants/generalKeywords";
 import ArmyTrait from "@/components/ArmyTrait";
+import { PageWrapper } from "../styles/pages.style";
 
 const ArmyBuilder: React.FC = () => {
   const {
@@ -28,8 +29,8 @@ const ArmyBuilder: React.FC = () => {
   }, [faction, router]);
 
   return (
-    <div>
-      <h1>Army Builder</h1>
+    <PageWrapper>
+      <h1>AOS Army Builder</h1>
       <ArmyTrait
         selected={spellLoreSelected}
         label="Spell Lore"
@@ -60,7 +61,7 @@ const ArmyBuilder: React.FC = () => {
       />
       <div>Points: {totalArmyPoints}</div>
       <Army />
-    </div>
+    </PageWrapper>
   );
 };
 

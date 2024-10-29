@@ -2,11 +2,11 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { ArmyContext } from "@/context/armyContext";
+import { PageWrapper } from "./styles/pages.style";
 
 const Home: React.FC = () => {
   const [selectedFaction, setSelectedFaction] = useState<string>("");
-  const { loadArmyFromLocalStorage, setFaction, availableFactions } =
-    useContext(ArmyContext);
+  const { setFaction, availableFactions } = useContext(ArmyContext);
   const router = useRouter();
 
   const handleRaceSelection = () => {
@@ -16,14 +16,9 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleLoadArmy = () => {
-    loadArmyFromLocalStorage();
-    router.push("/roster");
-  };
-
   return (
-    <div>
-      <h1>Select a Race or Load an Army</h1>
+    <PageWrapper>
+      <h1>Select a Race</h1>
       <select
         value={selectedFaction}
         onChange={(e) => setSelectedFaction(e.target.value)}
@@ -36,8 +31,7 @@ const Home: React.FC = () => {
         ))}
       </select>
       <button onClick={handleRaceSelection}>Select Race</button>
-      <button onClick={handleLoadArmy}>Load Army</button>
-    </div>
+    </PageWrapper>
   );
 };
 
