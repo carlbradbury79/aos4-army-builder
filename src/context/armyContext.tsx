@@ -152,7 +152,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       ...army,
       regiments: army.regiments.map((regiment) =>
         regiment.id === regimentId
-          ? { ...regiment, hero: heroWithUniqueId }
+          ? { ...regiment, hero: heroWithUniqueId, units: [] }
           : regiment
       ),
     });
