@@ -17,7 +17,7 @@ export const SelectAddon: React.FC<{
           value={addonValue}
           onChange={(e) => setHeroField(regimentId, addonKey, e.target.value)}
         >
-          <option value="">Select Heroic Trait</option>
+          <option value="">Select {label}</option>
           {availableAddons.map((trait) => (
             <option key={trait} value={trait}>
               {trait}
