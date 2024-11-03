@@ -21,13 +21,13 @@ export const CloseButton = styled.button`
 `;
 
 interface InlineButtonProps {
-  borderColor?: string;
+  color?: string;
 }
 
 export const InlineButton = styled.button<InlineButtonProps>`
   background: transparent;
   border: none;
-  color: ${(props) => props.borderColor || "#333"};
+  color: ${(props) => props.color || "#333"};
   font-size: 1.5rem;
   cursor: pointer;
   position: relative;

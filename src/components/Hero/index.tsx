@@ -31,7 +31,7 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
         <HeroGeneralClose>
           {hero.isGeneral && (
             <InlineButton
-              borderColor="#ff0000"
+              color="#ff0000"
               onClick={() =>
                 setHeroField(regimentId, armyTerms.isGeneral, undefined)
               }
