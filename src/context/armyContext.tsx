@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, ReactNode, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ArmyContextType, Army, Hero, Unit, UnitTypes } from "@/types";
+import { ArmyContextType, Army, Hero, Unit, UnitTypes, Faction } from "@/types";
 import {
   battletomeData,
   genericManifestationLores,
@@ -21,6 +21,67 @@ export const ArmyContext = createContext<ArmyContextType>(
 const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [army, setArmy] = useState<Army>({ regiments: [], auxiliaryUnits: [] });
   const [faction, setFaction] = useState<string>("");
+  const [armyName, setArmyName] = useState<string>("");
+  const [savedArmies, setSavedArmies] = useState<Army[]>([]);
+
+  const AddNameToArmy = (armyName: string) => {
+    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
+    const isNameTaken = savedArmies.some(
+      (savedArmy: Army) => savedArmy.armyName === armyName
+    );
+
+    if (isNameTaken) {
+      console.warn("Army name already taken. Please choose a different name.");
+      // return;
+    }
+    setArmyName(armyName);
+    setArmy({ ...army, armyName });
+  };
+
+  const addFactionToArmy = (faction: Faction) => {
+    setArmy({ ...army, faction });
+    setFaction(faction);
+  };
+
+  const saveArmyToLocalStorage = () => {
+    if (!army.armyName) return;
+    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
+    const isNameTaken = savedArmies.some(
+      (savedArmy: Army) => savedArmy.armyName === army.armyName
+    );
+    if (isNameTaken) {
+      console.warn("Army name already taken, so not saving.");
+      return;
+    }
+    const newArmy = { ...army, id: uuidv4() };
+    savedArmies.push(newArmy);
+    console.log("Saving...");
+    localStorage.setItem("savedArmies", JSON.stringify(savedArmies));
+  };
+
+  const loadArmyNamesFromLocalStorage = () => {
+    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
+    setSavedArmies(savedArmies);
+  };
+
+  const loadArmyFromLocalStorage = (armyName: string) => {
+    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
+    const army = savedArmies.find((army: Army) => army.armyName === armyName);
+    if (army) {
+      setArmy(army);
+      setFaction(army?.faction || "");
+      setArmyName(army?.armyName || "");
+    }
+  };
+
+  const removeArmyFromLocalStorage = (armyName: string) => {
+    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
+    const updatedArmies = savedArmies.filter(
+      (savedArmy: Army) => savedArmy.armyName !== armyName
+    );
+    localStorage.setItem("savedArmies", JSON.stringify(updatedArmies));
+    loadArmyNamesFromLocalStorage();
+  };
 
   const availableFactions = Object.keys(battletomeData);
 
@@ -114,17 +175,38 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           ((sub.hero && unit.keywords.includes(keywords.hero)) ||
             !unit.keywords.includes(keywords.hero))
       );
+
       if (matchingSubordinate) {
+        const isHero = unit.keywords.includes(keywords.hero);
+        const isAlreadyIncluded = regiment?.units.some(
+          (regimentUnit) => regimentUnit.name === unit.name
+        );
+
         if (matchingSubordinate.max > 0) {
-          const isAlreadyIncluded = regiment?.units.some(
-            (regimentUnit) => regimentUnit.name === unit.name
-          );
-          return !isAlreadyIncluded;
+          const countMatchingUnits: number = (regiment?.units ?? []).filter(
+            (regimentUnit) =>
+              regimentUnit.factionKeywords.some(
+                (keyword) => keyword === matchingSubordinate.keyword
+              )
+          ).length;
+
+          console.log(countMatchingUnits);
+
+          if (isHero) {
+            return (
+              !isAlreadyIncluded && countMatchingUnits < matchingSubordinate.max
+            );
+          }
+
+          return countMatchingUnits < matchingSubordinate.max;
         }
-        return true;
+
+        return !isAlreadyIncluded;
       }
+
       return false;
     });
+
     return subordinateUnits;
   };
 
@@ -246,16 +328,16 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const saveArmyToLocalStorage = () => {
-    localStorage.setItem("army", JSON.stringify(army));
-  };
+  // const saveArmyToLocalStorage = () => {
+  //   localStorage.setItem("army", JSON.stringify(army));
+  // };
 
-  const loadArmyFromLocalStorage = () => {
-    const savedArmy = localStorage.getItem("army");
-    if (savedArmy) {
-      setArmy(JSON.parse(savedArmy));
-    }
-  };
+  // const loadArmyFromLocalStorage = () => {
+  //   const savedArmy = localStorage.getItem("army");
+  //   if (savedArmy) {
+  //     setArmy(JSON.parse(savedArmy));
+  //   }
+  // };
 
   const totalArmyPoints =
     army.regiments.reduce(
@@ -265,6 +347,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         regiment.units.reduce((acc, unit) => acc + unit.cost, 0),
       0
     ) + army.auxiliaryUnits.reduce((acc, unit) => acc + unit.cost, 0);
+
+  console.log(army);
 
   return (
     <ArmyContext.Provider
@@ -304,6 +388,12 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         addAuxUnit,
         removeAuxUnit,
         reinforceAuxUnit,
+        loadArmyNamesFromLocalStorage,
+        armyName,
+        AddNameToArmy,
+        removeArmyFromLocalStorage,
+        savedArmies,
+        addFactionToArmy,
       }}
     >
       {children}

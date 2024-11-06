@@ -33,6 +33,8 @@ export type Regiment = {
   units: Unit[];
 };
 
+export type Faction = "skaven" | "stormcast" | "soulblight";
+
 export type Army = {
   armyName?: string;
   battleFormation?: string | undefined;
@@ -43,6 +45,7 @@ export type Army = {
   auxiliaryUnits: Unit[];
   armyPoints?: number;
   numberOfWounds?: number;
+  faction?: Faction;
 };
 
 export type ArmyContextType = {
@@ -56,7 +59,7 @@ export type ArmyContextType = {
   getAvailableHeroes: () => Hero[];
   getAvailableUnits: () => Unit[];
   saveArmyToLocalStorage: () => void;
-  loadArmyFromLocalStorage: () => void;
+  loadArmyFromLocalStorage: (armyId: string) => void;
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
@@ -89,4 +92,10 @@ export type ArmyContextType = {
   addAuxUnit: (unit: Unit) => void;
   removeAuxUnit: (unitId: string) => void;
   reinforceAuxUnit: (unitId: string, reinforce: boolean) => void;
+  loadArmyNamesFromLocalStorage: () => void;
+  armyName: string;
+  AddNameToArmy: (name: string) => void;
+  removeArmyFromLocalStorage: (armyId: string) => void;
+  savedArmies: Army[];
+  addFactionToArmy: (faction: Faction) => void;
 };

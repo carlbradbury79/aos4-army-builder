@@ -6,6 +6,7 @@ import Army from "@/components/Army";
 import { armyTerms } from "@/constants/generalKeywords";
 import ArmyTrait from "@/components/ArmyTrait";
 import { PageWrapper } from "../styles/pages.style";
+import ArmyName from "@/components/ArmyName";
 
 const ArmyBuilder: React.FC = () => {
   const {
@@ -31,6 +32,7 @@ const ArmyBuilder: React.FC = () => {
   return (
     <PageWrapper>
       <h1>AOS Army Builder</h1>
+      <ArmyName />
       <ArmyTrait
         selected={spellLoreSelected}
         label="Spell Lore"
