@@ -98,4 +98,6 @@ export type ArmyContextType = {
   removeArmyFromLocalStorage: (armyId: string) => void;
   savedArmies: Army[];
   addFactionToArmy: (faction: Faction) => void;
+  isArmyNameTaken: (name: string) => boolean;
+  addNameAndFaction: (name: string, faction: Faction) => void;
 };

@@ -24,16 +24,20 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [armyName, setArmyName] = useState<string>("");
   const [savedArmies, setSavedArmies] = useState<Army[]>([]);
 
-  const AddNameToArmy = (armyName: string) => {
+  const addNameAndFaction = (armyName: string, faction: Faction) => {
+    setArmy({ ...army, armyName, faction });
+    setArmyName(armyName);
+    setFaction(faction);
+  };
+
+  const isArmyNameTaken = (armyName: string): boolean => {
     const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-    const isNameTaken = savedArmies.some(
+    return savedArmies.some(
       (savedArmy: Army) => savedArmy.armyName === armyName
     );
+  };
 
-    if (isNameTaken) {
-      console.warn("Army name already taken. Please choose a different name.");
-      // return;
-    }
+  const AddNameToArmy = (armyName: string) => {
     setArmyName(armyName);
     setArmy({ ...army, armyName });
   };
@@ -44,17 +48,22 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const saveArmyToLocalStorage = () => {
-    if (!army.armyName) return;
     const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-    const isNameTaken = savedArmies.some(
+
+    // Check if an army with the same ID already exists
+    const armyIndex = savedArmies.findIndex(
       (savedArmy: Army) => savedArmy.armyName === army.armyName
     );
-    if (isNameTaken) {
-      console.warn("Army name already taken, so not saving.");
-      return;
+
+    if (armyIndex !== -1) {
+      // Replace the existing army
+      savedArmies[armyIndex] = { ...army };
+    } else {
+      // Add the new army
+      const newArmy = { ...army, id: uuidv4() };
+      savedArmies.push(newArmy);
     }
-    const newArmy = { ...army, id: uuidv4() };
-    savedArmies.push(newArmy);
+
     console.log("Saving...");
     localStorage.setItem("savedArmies", JSON.stringify(savedArmies));
   };
@@ -394,6 +403,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeArmyFromLocalStorage,
         savedArmies,
         addFactionToArmy,
+        isArmyNameTaken,
+        addNameAndFaction,
       }}
     >
       {children}

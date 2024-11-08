@@ -20,6 +20,7 @@ const ArmyBuilder: React.FC = () => {
     spellLoreSelected,
     manifestationLoreSelected,
     totalArmyPoints,
+    armyName,
   } = useContext(ArmyContext);
   const router = useRouter();
 
@@ -32,6 +33,8 @@ const ArmyBuilder: React.FC = () => {
   return (
     <PageWrapper>
       <h1>AOS Army Builder</h1>
+      <h2>{armyName}</h2>
+      {/* Todo allow user to change army name */}
       <ArmyName />
       <ArmyTrait
         selected={spellLoreSelected}

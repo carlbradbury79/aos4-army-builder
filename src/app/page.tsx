@@ -7,13 +7,16 @@ import { Army, Faction } from "@/types";
 
 const Home: React.FC = () => {
   const [selectedFaction, setSelectedFaction] = useState<Faction>();
+  const [localArmyName, setLocalArmyName] = useState<string>("");
+  const [armyNameTaken, setArmyNameTaken] = useState<boolean>(false);
   const {
-    addFactionToArmy,
     availableFactions,
     loadArmyNamesFromLocalStorage,
     removeArmyFromLocalStorage,
     loadArmyFromLocalStorage,
     savedArmies,
+    isArmyNameTaken,
+    addNameAndFaction,
   } = useContext(ArmyContext);
   const router = useRouter();
 
@@ -24,16 +27,22 @@ const Home: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const nameTaken = isArmyNameTaken(localArmyName);
+    setArmyNameTaken(nameTaken);
+  }, [localArmyName, isArmyNameTaken]);
+
   const handleRaceSelection = () => {
-    if (selectedFaction) {
-      addFactionToArmy(selectedFaction);
+    if (selectedFaction && localArmyName && !armyNameTaken) {
+      addNameAndFaction(localArmyName, selectedFaction);
       router.push(`/roster`);
     }
   };
 
   return (
     <PageWrapper>
-      <h1>Select a Race</h1>
+      <h1>AOS Army Builder</h1>
+      <h2>Create new army</h2>
       <select
         value={selectedFaction}
         onChange={(e) => setSelectedFaction(e.target.value as Faction)}
@@ -45,7 +54,25 @@ const Home: React.FC = () => {
           </option>
         ))}
       </select>
-      <button onClick={() => handleRaceSelection()}>Select Race</button>
+
+      {selectedFaction && (
+        <input
+          type="text"
+          value={localArmyName}
+          onChange={(e) => setLocalArmyName(e.target.value)}
+          placeholder="Enter army name"
+        />
+      )}
+
+      {selectedFaction && !!localArmyName && !armyNameTaken && (
+        <button
+          disabled={!selectedFaction || !localArmyName || armyNameTaken}
+          onClick={() => handleRaceSelection()}
+        >
+          Select Race
+        </button>
+      )}
+
       <h2>Load Army</h2>
       {armyNames.length === 0 && <p>No armies saved</p>}
       <div>
