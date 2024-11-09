@@ -178,39 +178,38 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const regiment = army.regiments.find((r) => r.id === regimentId);
 
     const subordinateUnits = availableUnits.filter((unit) => {
-      const matchingSubordinate = hero?.subordinates?.find(
+      const matchingSubordinates = hero?.subordinates?.filter(
         (sub) =>
           unit.factionKeywords.some((keyword) => keyword === sub.keyword) &&
           ((sub.hero && unit.keywords.includes(keywords.hero)) ||
             !unit.keywords.includes(keywords.hero))
       );
 
-      if (matchingSubordinate) {
-        const isHero = unit.keywords.includes(keywords.hero);
-        const isAlreadyIncluded = regiment?.units.some(
-          (regimentUnit) => regimentUnit.name === unit.name
-        );
+      if (matchingSubordinates && matchingSubordinates.length > 0) {
+        return matchingSubordinates.every((subordinate) => {
+          const isHero = unit.keywords.includes(keywords.hero);
+          const isAlreadyIncluded = regiment?.units.some(
+            (regimentUnit) => regimentUnit.name === unit.name
+          );
 
-        if (matchingSubordinate.max > 0) {
-          const countMatchingUnits: number = (regiment?.units ?? []).filter(
-            (regimentUnit) =>
-              regimentUnit.factionKeywords.some(
-                (keyword) => keyword === matchingSubordinate.keyword
-              )
-          ).length;
+          if (subordinate.max > 0) {
+            const countMatchingUnits: number = (regiment?.units ?? []).filter(
+              (regimentUnit) =>
+                regimentUnit.factionKeywords.some(
+                  (keyword) => keyword === subordinate.keyword
+                )
+            ).length;
 
-          console.log(countMatchingUnits);
+            if (isHero) {
+              return !isAlreadyIncluded && countMatchingUnits < subordinate.max;
+            }
 
-          if (isHero) {
-            return (
-              !isAlreadyIncluded && countMatchingUnits < matchingSubordinate.max
-            );
+            return countMatchingUnits < subordinate.max;
           }
 
-          return countMatchingUnits < matchingSubordinate.max;
-        }
-
-        return !isAlreadyIncluded;
+          // If max is 0, it can be chosen an unlimited number of times
+          return !isAlreadyIncluded || subordinate.max === 0;
+        });
       }
 
       return false;
