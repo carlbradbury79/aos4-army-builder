@@ -53,6 +53,18 @@ export const prayerLores = ["Noxious Prayers"];
 
 export const manifestationLore = ["Manifestations of Doom"];
 
+const subordinateRules = {
+  oneWeaponTeam: { keyword: weaponsTeam, max: 1 },
+  oneWarmachine: { keyword: warMachine, max: 1 },
+  oneOverclaw: { keyword: overclaw, max: 1 },
+  oneUnitOfClanrats: { keyword: skavenUnits.clanrats, max: 1 },
+  anySkaven: [
+    { keyword: skaven, max: 0 },
+    { keyword: weaponsTeam, max: 1 },
+    { keyword: warMachine, max: 1 },
+  ],
+};
+
 export const skavenHeroProfiles: Hero[] = [
   {
     id: "1",
@@ -61,7 +73,7 @@ export const skavenHeroProfiles: Hero[] = [
     quantity: 1,
     subordinates: [
       { keyword: skryre, max: 0 },
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
     ],
     keywords: [hero, wizard[1], infantry],
     factionKeywords: [chaos, skaven, skaven],
@@ -91,7 +103,7 @@ export const skavenHeroProfiles: Hero[] = [
     quantity: 1,
     subordinates: [
       { keyword: eshin, max: 0 },
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
     ],
     keywords: [hero, infantry],
     factionKeywords: [
@@ -107,10 +119,7 @@ export const skavenHeroProfiles: Hero[] = [
     name: skavenUnits.greySeer,
     cost: 120,
     quantity: 1,
-    subordinates: [
-      { keyword: overclaw, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
-    ],
+    subordinates: [subordinateRules.oneOverclaw, ...subordinateRules.anySkaven],
     keywords: [hero, wizard[1], infantry],
     factionKeywords: [chaos, skaven, masterclan],
   },
@@ -119,10 +128,7 @@ export const skavenHeroProfiles: Hero[] = [
     name: skavenUnits.greySeerOnScreamingBell,
     cost: 350,
     quantity: 1,
-    subordinates: [
-      { keyword: overclaw, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
-    ],
+    subordinates: [subordinateRules.oneOverclaw, ...subordinateRules.anySkaven],
     keywords: [hero, wizard[2], warMachine, ward.fivePlus],
     factionKeywords: [chaos, skaven, masterclan],
   },
@@ -140,10 +146,7 @@ export const skavenHeroProfiles: Hero[] = [
     name: skavenUnits.lordSkreechVerminking,
     cost: 430,
     quantity: 1,
-    subordinates: [
-      { keyword: overclaw, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
-    ],
+    subordinates: [subordinateRules.oneOverclaw, { keyword: skaven, max: 0 }],
     keywords: [monster, hero, unique, wizard[1], ward.fivePlus, warmaster],
     factionKeywords: [
       chaos,
@@ -162,7 +165,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 100,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: moulder, max: 0 },
     ],
     keywords: [hero, infantry],
@@ -174,7 +177,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 340,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: pestilens, max: 0 },
     ],
     keywords: [hero, priest[1], warMachine, ward.fivePlus],
@@ -185,10 +188,7 @@ export const skavenHeroProfiles: Hero[] = [
     name: skavenUnits.thanquol,
     cost: 360,
     quantity: 1,
-    subordinates: [
-      { keyword: overclaw, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
-    ],
+    subordinates: [subordinateRules.oneOverclaw, ...subordinateRules.anySkaven],
     keywords: [hero, monster, wizard[2], ward.fivePlus, warmaster, unique],
     factionKeywords: [chaos, skaven, masterclan],
   },
@@ -198,7 +198,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 360,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: pestilens, max: 0 },
     ],
     keywords: [monster, hero, wizard[1], ward.fivePlus],
@@ -210,7 +210,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 410,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: skavenUnits.deathmaster, max: 1, hero: true },
       { keyword: eshin, max: 0 },
     ],
@@ -236,7 +236,7 @@ export const skavenHeroProfiles: Hero[] = [
     quantity: 1,
     subordinates: [
       { keyword: skavenUnits.clawlord, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
+      ...subordinateRules.anySkaven,
     ],
     keywords: [monster, hero, wizard[1], ward.fivePlus],
     factionKeywords: [chaos, skaven, daemon, masterclan],
@@ -246,10 +246,7 @@ export const skavenHeroProfiles: Hero[] = [
     name: skavenUnits.vizzikSkour,
     cost: 450,
     quantity: 1,
-    subordinates: [
-      { keyword: overclaw, max: 1, hero: true },
-      { keyword: skaven, max: 0 },
-    ],
+    subordinates: [subordinateRules.oneOverclaw, ...subordinateRules.anySkaven],
     keywords: [hero, unique, monster, priest[2], ward.fivePlus, warmaster],
     factionKeywords: [chaos, skaven, daemon, masterclan],
   },
@@ -259,7 +256,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 120,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: skryre, max: 0 },
     ],
     keywords: [hero, infantry],
@@ -272,7 +269,7 @@ export const skavenHeroProfiles: Hero[] = [
     quantity: 1,
     subordinates: [
       { keyword: skryre, max: 0 },
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
     ],
     keywords: [hero, infantry],
     factionKeywords: [chaos, skaven, skryre],
@@ -283,7 +280,7 @@ export const skavenHeroProfiles: Hero[] = [
     cost: 140,
     quantity: 1,
     subordinates: [
-      { keyword: skavenUnits.clanrats, max: 1 },
+      subordinateRules.oneUnitOfClanrats,
       { keyword: skryre, max: 0 },
     ],
     keywords: [hero, infantry],
@@ -322,7 +319,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 130,
     quantity: 2,
     keywords: [warMachine],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, warMachine],
   },
   {
     id: "24",
@@ -330,7 +327,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 160,
     quantity: 1,
     keywords: [warMachine],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, warMachine],
   },
   {
     id: "25",
@@ -386,7 +383,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 150,
     quantity: 3,
     keywords: [infantry, weaponsTeam],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, weaponsTeam],
   },
   {
     id: "32",
@@ -394,7 +391,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 180,
     quantity: 1,
     keywords: [warMachine],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, warMachine],
   },
   {
     id: "33",
@@ -418,7 +415,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 170,
     quantity: 1,
     keywords: [warMachine],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, warMachine],
   },
   {
     id: "36",
@@ -426,7 +423,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 160,
     quantity: 1,
     keywords: [warMachine],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, warMachine],
   },
   {
     id: "37",
@@ -434,7 +431,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 140,
     quantity: 3,
     keywords: [infantry, weaponsTeam],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, weaponsTeam],
   },
   {
     id: "38",
@@ -450,7 +447,7 @@ export const skavenUnitProfiles: Unit[] = [
     cost: 190,
     quantity: 3,
     keywords: [infantry, weaponsTeam],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, weaponsTeam],
   },
 ];
 
