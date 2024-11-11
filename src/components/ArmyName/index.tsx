@@ -12,7 +12,7 @@ const ArmyName = () => {
         onChange={(e) => AddNameToArmy(e.target.value)}
         placeholder="Enter army name"
       /> */}
-      <button onClick={saveArmyToLocalStorage}>Save Army</button>
+      <button onClick={saveArmyToLocalStorage}>&#128190;</button>
     </div>
   );
 };

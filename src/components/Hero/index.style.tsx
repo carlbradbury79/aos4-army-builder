@@ -19,3 +19,10 @@ export const HeroGeneralClose = styled.div`
   justify-content: space-between;
   gap: 1rem;
 `;
+
+export const AddonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+`;

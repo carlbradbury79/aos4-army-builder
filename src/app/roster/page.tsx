@@ -33,7 +33,9 @@ const ArmyBuilder: React.FC = () => {
   return (
     <PageWrapper>
       <h1>AOS Army Builder</h1>
-      <h2>{armyName}</h2>
+      <h2>
+        {armyName}: {totalArmyPoints}pts
+      </h2>
       {/* Todo allow user to change army name */}
       <ArmyName />
       <ArmyTrait
@@ -64,7 +66,6 @@ const ArmyBuilder: React.FC = () => {
         availableSelection={availableManifestationLores}
         faction={faction}
       />
-      <div>Points: {totalArmyPoints}</div>
       <Army />
     </PageWrapper>
   );

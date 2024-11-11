@@ -4,11 +4,11 @@ export const RegimentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid grey;
-  margin: 1rem;
   padding: 1rem;
   position: relative;
   background-color: white;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const RemoveRegimentButton = styled.button`

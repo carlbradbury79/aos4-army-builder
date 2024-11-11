@@ -55,26 +55,27 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
       </HeroName>
       {canHeroTakeTraitsOrArtefacts && (
         <>
-          <h4>Hero Options</h4>
-          <div>
-            {hero.heroicTrait && (
-              <Addon
-                label="Heroic Trait"
-                addonKey={armyTerms.heroicTrait}
-                addonValue={hero.heroicTrait}
-                regimentId={regimentId}
-              />
-            )}
-            {!isHeroicTraitSelected && (
-              <SelectAddon
-                label="Heroic Trait"
-                addonKey={armyTerms.heroicTrait}
-                addonValue={hero.heroicTrait}
-                regimentId={regimentId}
-                availableAddons={availableHeroicTraits}
-              />
-            )}
-          </div>
+          {isArtefactOfPowerSelected ||
+            (isHeroicTraitSelected && <h4>Hero Options</h4>)}
+
+          {hero.heroicTrait && (
+            <Addon
+              label="Heroic Trait"
+              addonKey={armyTerms.heroicTrait}
+              addonValue={hero.heroicTrait}
+              regimentId={regimentId}
+            />
+          )}
+          {!isHeroicTraitSelected && (
+            <SelectAddon
+              label="Heroic Trait"
+              addonKey={armyTerms.heroicTrait}
+              addonValue={hero.heroicTrait}
+              regimentId={regimentId}
+              availableAddons={availableHeroicTraits}
+            />
+          )}
+
           {hero.artefactOfPower && (
             <Addon
               label="Artefact of Power"
@@ -83,17 +84,16 @@ const Hero: React.FC<{ regimentId: string; hero: HeroType }> = ({
               regimentId={regimentId}
             />
           )}
-          <div>
-            {!isArtefactOfPowerSelected && (
-              <SelectAddon
-                label="Artefact of Power"
-                addonKey={armyTerms.artefactOfPower}
-                addonValue={hero.artefactOfPower}
-                regimentId={regimentId}
-                availableAddons={availableArtifactsOfPower}
-              />
-            )}
-          </div>
+
+          {!isArtefactOfPowerSelected && (
+            <SelectAddon
+              label="Artefact of Power"
+              addonKey={armyTerms.artefactOfPower}
+              addonValue={hero.artefactOfPower}
+              regimentId={regimentId}
+              availableAddons={availableArtifactsOfPower}
+            />
+          )}
         </>
       )}
     </HeroWrapper>

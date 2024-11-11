@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
+import { CloseButton } from "@/app/styles/buttons.style";
+import { ArmyTraitWrapper } from "./index.style";
 
 type ArmyTraitTypes = {
   selected: string | undefined;
@@ -20,12 +22,14 @@ const ArmyTrait: React.FC<ArmyTraitTypes> = ({
   return (
     <div>
       {selected ? (
-        <div>
-          {label}: {selected}{" "}
-          <button onClick={() => setArmyField(armyTerm, undefined)}>
-            Remove
-          </button>
-        </div>
+        <ArmyTraitWrapper>
+          <div>
+            {label}: {selected}
+          </div>
+          <CloseButton onClick={() => setArmyField(armyTerm, undefined)}>
+            &#10006;
+          </CloseButton>
+        </ArmyTraitWrapper>
       ) : (
         <label>
           {label}:

@@ -3,7 +3,11 @@ import { ArmyContext } from "../../context/armyContext";
 import Regiment from "../Regiment";
 import AddAuxUnit from "../AddAuxUnit";
 import AuxUnit from "../AuxUnit";
-import { AddRegimentButton, ArmyWrapper } from "./index.style";
+import {
+  AddRegimentButton,
+  ArmyWrapper,
+  RegimentsWrapper,
+} from "./index.style";
 
 const ArmyList = () => {
   const { army, addRegiment } = useContext(ArmyContext);
@@ -16,11 +20,11 @@ const ArmyList = () => {
           &#43;
         </AddRegimentButton>
       )}
-      <div>
+      <RegimentsWrapper>
         {army.regiments.map((regiment) => (
           <Regiment regiment={regiment} key={regiment.id} />
         ))}
-      </div>
+      </RegimentsWrapper>
       <div>
         <h2>Auxillary Units</h2>
         <AddAuxUnit />

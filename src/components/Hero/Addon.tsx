@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { ArmyContext } from "@/context/armyContext";
+import { CloseButton } from "@/app/styles/buttons.style";
+import { AddonWrapper } from "./index.style";
 
 export const Addon: React.FC<{
   regimentId: string;
@@ -9,11 +11,15 @@ export const Addon: React.FC<{
 }> = ({ label, addonValue, regimentId, addonKey }) => {
   const { setHeroField } = useContext(ArmyContext);
   return (
-    <div>
-      {label}: {addonValue}
-      <button onClick={() => setHeroField(regimentId, addonKey, undefined)}>
-        Remove
-      </button>
-    </div>
+    <AddonWrapper>
+      <div>
+        {label}: {addonValue}
+      </div>
+      <CloseButton
+        onClick={() => setHeroField(regimentId, addonKey, undefined)}
+      >
+        &#10006;
+      </CloseButton>
+    </AddonWrapper>
   );
 };
