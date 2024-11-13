@@ -67,6 +67,7 @@ const ArmyBuilder: React.FC = () => {
         faction={faction}
       />
       <Army />
+      <button onClick={() => router.push("/display")}>View Roster</button>
     </PageWrapper>
   );
 };
