@@ -158,10 +158,18 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     return battletomeData[faction as keyof typeof battletomeData];
   };
 
-  const getAvailableHeroes = (): Hero[] =>
-    filterUnitsByFaction(faction).filter((unit) =>
-      unit.keywords.includes(keywords.hero)
+  const getAvailableHeroes = (): Hero[] => {
+    const uniqueHeroesSelected = army.regiments
+      .filter((regiment) => regiment.hero)
+      .map((regiment) => regiment.hero!.name);
+
+    return filterUnitsByFaction(faction).filter(
+      (unit) =>
+        unit.keywords.includes(keywords.hero) &&
+        (!unit.keywords.includes("unique") ||
+          !uniqueHeroesSelected.includes(unit.name))
     ) as Hero[];
+  };
 
   const getAvailableUnits = () =>
     faction
