@@ -1,7 +1,7 @@
-import { Hero, Unit } from "@/types";
+import { Hero, Unit, UnitTypes } from "@/types";
 import { keywords, ossiarchKeywords, ossiarchUnits } from "../constants";
 
-const { hero, infantry, monster, cavalry, warMachine } = keywords;
+const { hero, infantry, monster, cavalry, warMachine, unique } = keywords;
 const { ossiarchBonereapers, legionSubcommander } = ossiarchKeywords;
 
 // Allegiance Abilities
@@ -27,14 +27,14 @@ export const heroicTraits = [
 
 export const spellLores = ["Lore of Ossian Sorcery"];
 
-export const prayerLores = ["Noxious Prayers"];
+export const prayerLores = [];
 
 export const manifestationLore = ["Horrors of the Necropolis"];
 
 // Subordinates
 const anyOssiarch = { keyword: ossiarchBonereapers, max: 0 };
-const anyInfantry = { keyword: "infantry", max: 0 };
-const oneSubcommander = { keyword: legionSubcommander, max: 1 };
+const anyInfantry = { keyword: infantry, max: 0 };
+const oneSubcommander = { keyword: legionSubcommander, max: 1, hero: true };
 const oneMortekCrawler = { keyword: ossiarchUnits.mortekCrawler, max: 1 };
 const oneGothizzarHarvester = {
   keyword: ossiarchUnits.gothizzarHarvester,
@@ -49,7 +49,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 230,
     quantity: 1,
     subordinates: [anyOssiarch],
-    keywords: [],
+    keywords: [unique, hero],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -58,7 +58,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 410,
     quantity: 1,
     subordinates: [anyOssiarch, oneSubcommander],
-    keywords: [hero, monster],
+    keywords: [hero, monster, unique],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -67,7 +67,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 500,
     quantity: 1,
     subordinates: [anyOssiarch, oneSubcommander],
-    keywords: [hero, monster],
+    keywords: [hero, monster, unique],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -76,8 +76,12 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 210,
     quantity: 1,
     subordinates: [anyOssiarch],
-    keywords: [hero, "cavalry"],
-    factionKeywords: [ossiarchBonereapers, legionSubcommander],
+    keywords: [hero, cavalry],
+    factionKeywords: [
+      ossiarchBonereapers,
+      legionSubcommander,
+      ossiarchUnits.liegeKavalos,
+    ],
   },
   {
     id: "5",
@@ -85,7 +89,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 130,
     quantity: 1,
     subordinates: [anyInfantry, oneGothizzarHarvester],
-    keywords: [hero, "infantry"],
+    keywords: [hero, infantry],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -94,7 +98,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 110,
     quantity: 1,
     subordinates: [anyInfantry, oneMortekCrawler, oneGothizzarHarvester],
-    keywords: [hero, "infantry"],
+    keywords: [hero, infantry],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -103,7 +107,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 160,
     quantity: 1,
     subordinates: [anyInfantry, oneGothizzarHarvester],
-    keywords: [hero, "infantry"],
+    keywords: [hero, infantry],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -112,7 +116,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 120,
     quantity: 1,
     subordinates: [anyInfantry, oneGothizzarHarvester],
-    keywords: [hero, "infantry"],
+    keywords: [hero, infantry],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -121,7 +125,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 880,
     quantity: 1,
     subordinates: [anyOssiarch, oneSubcommander],
-    keywords: [hero, monster],
+    keywords: [hero, monster, unique],
     factionKeywords: [ossiarchBonereapers],
   },
   {
@@ -130,13 +134,13 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     cost: 170,
     quantity: 1,
     subordinates: [anyOssiarch],
-    keywords: [hero, "infantry"],
+    keywords: [hero, infantry, unique],
     factionKeywords: [ossiarchBonereapers],
   },
 ];
 
 // Units
-export const skavenUnitProfiles: Unit[] = [
+export const ossiarchBonereaperUnitProfiles: Unit[] = [
   {
     id: "11",
     name: ossiarchUnits.gothizzarHarvester,
@@ -209,4 +213,9 @@ export const skavenUnitProfiles: Unit[] = [
     keywords: [infantry],
     factionKeywords: [ossiarchBonereapers, infantry],
   },
+];
+
+export const ossiarchBonereapersBattleProfiles: UnitTypes[] = [
+  ...ossiarchBonereaperHeroProfiles,
+  ...ossiarchBonereaperUnitProfiles,
 ];
