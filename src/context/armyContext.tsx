@@ -344,17 +344,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  // const saveArmyToLocalStorage = () => {
-  //   localStorage.setItem("army", JSON.stringify(army));
-  // };
-
-  // const loadArmyFromLocalStorage = () => {
-  //   const savedArmy = localStorage.getItem("army");
-  //   if (savedArmy) {
-  //     setArmy(JSON.parse(savedArmy));
-  //   }
-  // };
-
   const totalArmyPoints =
     army.regiments.reduce(
       (acc, regiment) =>
@@ -363,8 +352,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         regiment.units.reduce((acc, unit) => acc + unit.cost, 0),
       0
     ) + army.auxiliaryUnits.reduce((acc, unit) => acc + unit.cost, 0);
-
-  console.log(army);
 
   return (
     <ArmyContext.Provider
