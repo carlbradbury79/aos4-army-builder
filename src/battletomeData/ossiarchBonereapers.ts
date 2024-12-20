@@ -50,7 +50,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
     quantity: 1,
     subordinates: [anyOssiarch],
     keywords: [unique, hero],
-    factionKeywords: [ossiarchBonereapers],
+    factionKeywords: [ossiarchBonereapers, legionSubcommander],
   },
   {
     id: "2",
@@ -64,7 +64,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
   {
     id: "3",
     name: ossiarchUnits.katakrosMortarchOfTheNecropolis,
-    cost: 500,
+    cost: 520,
     quantity: 1,
     subordinates: [anyOssiarch, oneSubcommander],
     keywords: [hero, monster, unique],
@@ -86,7 +86,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
   {
     id: "5",
     name: ossiarchUnits.mortisanBoneshaper,
-    cost: 130,
+    cost: 120,
     quantity: 1,
     subordinates: [anyInfantry, oneGothizzarHarvester],
     keywords: [hero, infantry],
@@ -113,7 +113,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
   {
     id: "8",
     name: ossiarchUnits.mortisanSoulreaper,
-    cost: 120,
+    cost: 110,
     quantity: 1,
     subordinates: [anyInfantry, oneGothizzarHarvester],
     keywords: [hero, infantry],
@@ -122,7 +122,7 @@ export const ossiarchBonereaperHeroProfiles: Hero[] = [
   {
     id: "9",
     name: ossiarchUnits.nagashSupremeLordOfTheUndead,
-    cost: 880,
+    cost: 900,
     quantity: 1,
     subordinates: [anyOssiarch, oneSubcommander],
     keywords: [hero, monster, unique],
@@ -144,7 +144,7 @@ export const ossiarchBonereaperUnitProfiles: Unit[] = [
   {
     id: "11",
     name: ossiarchUnits.gothizzarHarvester,
-    cost: 220,
+    cost: 200,
     quantity: 1,
     keywords: [monster],
     factionKeywords: [ossiarchBonereapers, ossiarchUnits.gothizzarHarvester],
@@ -160,7 +160,7 @@ export const ossiarchBonereaperUnitProfiles: Unit[] = [
   {
     id: "13",
     name: ossiarchUnits.kavalosDeathriders,
-    cost: 180,
+    cost: 200,
     quantity: 5,
     keywords: [cavalry],
     factionKeywords: [ossiarchBonereapers],
@@ -200,7 +200,7 @@ export const ossiarchBonereaperUnitProfiles: Unit[] = [
   {
     id: "18",
     name: ossiarchUnits.necropolisStalkers,
-    cost: 170,
+    cost: 160,
     quantity: 3,
     keywords: [infantry],
     factionKeywords: [ossiarchBonereapers, infantry],
@@ -208,7 +208,7 @@ export const ossiarchBonereaperUnitProfiles: Unit[] = [
   {
     id: "19",
     name: ossiarchUnits.teraticCohort,
-    cost: 140,
+    cost: 150,
     quantity: 8,
     keywords: [infantry],
     factionKeywords: [ossiarchBonereapers, infantry],
