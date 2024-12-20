@@ -56,7 +56,7 @@ export const manifestationLore = ["Manifestations of Doom"];
 const subordinateRules = {
   oneWeaponTeam: { keyword: weaponsTeam, max: 1 },
   oneWarmachine: { keyword: warMachine, max: 1 },
-  oneOverclaw: { keyword: overclaw, max: 1 },
+  oneOverclaw: { keyword: overclaw, max: 1, hero: true },
   oneUnitOfClanrats: { keyword: skavenUnits.clanrats, max: 1 },
   anySkaven: [
     { keyword: skaven, max: 0 },
@@ -81,7 +81,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "2",
     name: skavenUnits.clawlord,
-    cost: 100,
+    cost: 80,
     quantity: 1,
     keywords: [hero, infantry, skavenUnits.clawlord],
     subordinates: [{ keyword: verminus, max: 0 }],
@@ -90,7 +90,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "3",
     name: skavenUnits.clawlordOnGnawBeast,
-    cost: 160,
+    cost: 130,
     quantity: 1,
     subordinates: [{ keyword: verminus, max: 0 }],
     keywords: [hero, cavalry],
@@ -99,7 +99,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "4",
     name: skavenUnits.deathmaster,
-    cost: 100,
+    cost: 120,
     quantity: 1,
     subordinates: [
       { keyword: eshin, max: 0 },
@@ -135,7 +135,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "7",
     name: skavenUnits.krittokFoulblade,
-    cost: 220,
+    cost: 180,
     quantity: 1,
     subordinates: [{ keyword: verminus, max: 0 }],
     keywords: [hero, unique, infantry, warmaster],
@@ -144,7 +144,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "8",
     name: skavenUnits.lordSkreechVerminking,
-    cost: 430,
+    cost: 410,
     quantity: 1,
     subordinates: [subordinateRules.oneOverclaw, { keyword: skaven, max: 0 }],
     keywords: [monster, hero, unique, wizard[1], ward.fivePlus, warmaster],
@@ -195,7 +195,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "12",
     name: skavenUnits.verminlordCorruptor,
-    cost: 360,
+    cost: 330,
     quantity: 1,
     subordinates: [
       subordinateRules.oneUnitOfClanrats,
@@ -220,7 +220,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "14",
     name: skavenUnits.verminlordWarbringer,
-    cost: 350,
+    cost: 320,
     quantity: 1,
     subordinates: [
       { keyword: skavenUnits.clawlord, max: 1 },
@@ -244,7 +244,7 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "16",
     name: skavenUnits.vizzikSkour,
-    cost: 450,
+    cost: 400,
     quantity: 1,
     subordinates: [subordinateRules.oneOverclaw, ...subordinateRules.anySkaven],
     keywords: [hero, unique, monster, priest[2], ward.fivePlus, warmaster],
@@ -253,38 +253,38 @@ export const skavenHeroProfiles: Hero[] = [
   {
     id: "17",
     name: skavenUnits.warlockBombardier,
-    cost: 120,
+    cost: 110,
     quantity: 1,
     subordinates: [
       subordinateRules.oneUnitOfClanrats,
       { keyword: skryre, max: 0 },
     ],
     keywords: [hero, infantry],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, overclaw],
   },
   {
     id: "18",
     name: skavenUnits.warlockEngineer,
-    cost: 100,
+    cost: 130,
     quantity: 1,
     subordinates: [
       { keyword: skryre, max: 0 },
       subordinateRules.oneUnitOfClanrats,
     ],
     keywords: [hero, infantry],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, overclaw],
   },
   {
     id: "19",
     name: skavenUnits.warlockGalvaneer,
-    cost: 140,
+    cost: 130,
     quantity: 1,
     subordinates: [
       subordinateRules.oneUnitOfClanrats,
       { keyword: skryre, max: 0 },
     ],
     keywords: [hero, infantry],
-    factionKeywords: [chaos, skaven, skryre],
+    factionKeywords: [chaos, skaven, skryre, overclaw],
   },
 ];
 
@@ -292,7 +292,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "20",
     name: skavenUnits.acolyteGlobadiers,
-    cost: 130,
+    cost: 100,
     quantity: 5,
     keywords: [infantry],
     factionKeywords: [chaos, skaven, skryre],
@@ -300,7 +300,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "21",
     name: skavenUnits.broodTerrror,
-    cost: 300,
+    cost: 260,
     quantity: 1,
     keywords: [monster],
     factionKeywords: [chaos, skaven, moulder],
@@ -324,7 +324,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "24",
     name: skavenUnits.doomwheel,
-    cost: 160,
+    cost: 120,
     quantity: 1,
     keywords: [warMachine],
     factionKeywords: [chaos, skaven, skryre, warMachine],
@@ -332,7 +332,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "25",
     name: skavenUnits.hellPitAbomination,
-    cost: 270,
+    cost: 240,
     quantity: 1,
     keywords: [monster],
     factionKeywords: [chaos, skaven, moulder],
@@ -356,7 +356,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "28",
     name: skavenUnits.plaguePack,
-    cost: 140,
+    cost: 120,
     quantity: 5,
     keywords: [infantry],
     factionKeywords: [chaos, skaven, pestilens],
@@ -380,7 +380,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "31",
     name: skavenUnits.ratlingGuns,
-    cost: 150,
+    cost: 170,
     quantity: 3,
     keywords: [infantry, weaponsTeam],
     factionKeywords: [chaos, skaven, skryre, weaponsTeam],
@@ -388,7 +388,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "32",
     name: skavenUnits.ratlingWarpblaster,
-    cost: 180,
+    cost: 150,
     quantity: 1,
     keywords: [warMachine],
     factionKeywords: [chaos, skaven, skryre, warMachine],
@@ -404,7 +404,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "34",
     name: skavenUnits.stormvermin,
-    cost: 140,
+    cost: 120,
     quantity: 10,
     keywords: [infantry],
     factionKeywords: [chaos, skaven, verminus],
@@ -412,7 +412,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "35",
     name: skavenUnits.warpGrinder,
-    cost: 170,
+    cost: 140,
     quantity: 1,
     keywords: [warMachine],
     factionKeywords: [chaos, skaven, skryre, warMachine],
@@ -420,7 +420,7 @@ export const skavenUnitProfiles: Unit[] = [
   {
     id: "36",
     name: skavenUnits.warpLightningCannon,
-    cost: 160,
+    cost: 140,
     quantity: 1,
     keywords: [warMachine],
     factionKeywords: [chaos, skaven, skryre, warMachine],
