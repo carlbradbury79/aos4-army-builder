@@ -3,6 +3,7 @@ export const keywords = {
   deathrattle: "Deathrattle",
   vyrkosRetainer: "Vyrkos Retainer",
   soulblightGravelords: "Soulblight Gravelords",
+  deathrattleOverseer: "Deathrattle Overseer",
 };
 
 export const units = {

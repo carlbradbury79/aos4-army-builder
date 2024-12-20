@@ -5,15 +5,26 @@ import {
   keywords,
 } from "@/constants";
 
-const { deadwalkers, deathrattle, vyrkosRetainer, soulblightGravelords } =
-  soulblightGravelordKeywords;
+const {
+  deadwalkers,
+  deathrattle,
+  vyrkosRetainer,
+  soulblightGravelords,
+  deathrattleOverseer,
+} = soulblightGravelordKeywords;
 const { hero, unique } = keywords;
+
+const takeDeathrattleOverseer = {
+  keyword: deathrattleOverseer,
+  max: 1,
+  hero: true,
+};
 
 export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.belladammaVolga,
     id: "1",
-    cost: 230,
+    cost: 220,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
@@ -25,7 +36,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.bloodseekerPalanquin,
     id: "2",
-    cost: 250,
+    cost: 230,
     quantity: 1,
     keywords: [hero],
     factionKeywords: [],
@@ -34,7 +45,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.cadoEzechiar,
     id: "3",
-    cost: 170,
+    cost: 150,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
@@ -43,7 +54,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.covenThrone,
     id: "4",
-    cost: 270,
+    cost: 250,
     quantity: 1,
     keywords: [hero],
     factionKeywords: [],
@@ -61,7 +72,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.ivyaVolga,
     id: "6",
-    cost: 160,
+    cost: 120,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [vyrkosRetainer],
@@ -70,7 +81,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.kritzaTheRatPrince,
     id: "7",
-    cost: 100,
+    cost: 70,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [vyrkosRetainer],
@@ -88,11 +99,14 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.laukaVai,
     id: "9",
-    cost: 320,
+    cost: 270,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
-    subordinates: [{ keyword: soulblightGravelords, max: 0 }],
+    subordinates: [
+      { keyword: soulblightGravelords, max: 0 },
+      takeDeathrattleOverseer,
+    ],
   },
   {
     name: soulblightUnits.mannfredVonCarstein,
@@ -101,7 +115,10 @@ export const soulblightHeroProfiles: Hero[] = [
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
-    subordinates: [{ keyword: soulblightGravelords, max: 0 }],
+    subordinates: [
+      { keyword: soulblightGravelords, max: 0 },
+      takeDeathrattleOverseer,
+    ],
   },
   {
     name: soulblightUnits.mortisEngine,
@@ -119,7 +136,10 @@ export const soulblightHeroProfiles: Hero[] = [
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
-    subordinates: [{ keyword: soulblightGravelords, max: 0 }],
+    subordinates: [
+      { keyword: soulblightGravelords, max: 0 },
+      takeDeathrattleOverseer,
+    ],
   },
   {
     name: soulblightUnits.necromancer,
@@ -137,7 +157,10 @@ export const soulblightHeroProfiles: Hero[] = [
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
-    subordinates: [{ keyword: soulblightGravelords, max: 0 }],
+    subordinates: [
+      { keyword: soulblightGravelords, max: 0 },
+      takeDeathrattleOverseer,
+    ],
   },
   {
     name: soulblightUnits.princeVhordrai,
@@ -146,12 +169,15 @@ export const soulblightHeroProfiles: Hero[] = [
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
-    subordinates: [{ keyword: soulblightGravelords, max: 0 }],
+    subordinates: [
+      { keyword: soulblightGravelords, max: 0 },
+      takeDeathrattleOverseer,
+    ],
   },
   {
     name: soulblightUnits.radukarTheBeast,
     id: "16",
-    cost: 330,
+    cost: 300,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
@@ -163,7 +189,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.radukarTheWolf,
     id: "17",
-    cost: 170,
+    cost: 150,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
@@ -175,7 +201,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.sekharFangOfNulahmia,
     id: "18",
-    cost: 240,
+    cost: 210,
     quantity: 1,
     keywords: [hero, unique],
     factionKeywords: [],
@@ -211,7 +237,7 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.vengorianLord,
     id: "22",
-    cost: 300,
+    cost: 250,
     quantity: 1,
     keywords: [hero],
     factionKeywords: [],
@@ -229,19 +255,19 @@ export const soulblightHeroProfiles: Hero[] = [
   {
     name: soulblightUnits.wightKing,
     id: "24",
-    cost: 120,
+    cost: 100,
     quantity: 1,
     keywords: [hero],
-    factionKeywords: [],
+    factionKeywords: [deathrattleOverseer],
     subordinates: [{ keyword: deathrattle, max: 0 }],
   },
   {
     name: soulblightUnits.wightKingOnSkeletalSteed,
     id: "25",
-    cost: 170,
+    cost: 140,
     quantity: 1,
     keywords: [hero],
-    factionKeywords: [],
+    factionKeywords: [deathrattleOverseer],
     subordinates: [{ keyword: deathrattle, max: 0 }],
   },
 ];
@@ -250,7 +276,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.askurganTrueblades,
     id: "26",
-    cost: 150,
+    cost: 130,
     quantity: 8,
     keywords: [],
     factionKeywords: [soulblightGravelords],
@@ -275,7 +301,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.corpseCart,
     id: "29",
-    cost: 90,
+    cost: 70,
     quantity: 1,
     keywords: [],
     factionKeywords: [deadwalkers, soulblightGravelords],
@@ -331,7 +357,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.terrorGheist,
     id: "36",
-    cost: 260,
+    cost: 240,
     quantity: 1,
     keywords: [],
     factionKeywords: [soulblightGravelords],
@@ -339,7 +365,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.vargheists,
     id: "37",
-    cost: 150,
+    cost: 130,
     quantity: 3,
     keywords: [],
     factionKeywords: [soulblightGravelords],
@@ -347,7 +373,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.vargskyr,
     id: "38",
-    cost: 180,
+    cost: 160,
     quantity: 1,
     keywords: [],
     factionKeywords: [soulblightGravelords],
@@ -364,7 +390,7 @@ const soulblightUnitsProfiles: Unit[] = [
   {
     name: soulblightUnits.zombieDragon,
     id: "40",
-    cost: 270,
+    cost: 250,
     quantity: 1,
     keywords: [],
     factionKeywords: [soulblightGravelords],
