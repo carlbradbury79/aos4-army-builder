@@ -1,7 +1,7 @@
 import { Hero, Unit, UnitTypes } from "@/types";
 import { keywords as genericKeywords } from "../constants";
 
-const { hero } = genericKeywords;
+const { hero, unique } = genericKeywords;
 
 export const keywords = {
   skink: "Skink",
@@ -101,7 +101,7 @@ export const seraphonHeroProfiles: Hero[] = [
     cost: 430,
     quantity: 1,
     subordinates: [takeOneFavouredSpawning, takeSeraphon, takeStarPriest],
-    keywords: [hero],
+    keywords: [hero, unique],
     factionKeywords: [],
   },
   {
