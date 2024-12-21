@@ -46,14 +46,25 @@ import {
   seraphonBattleProfiles as seraphon,
 } from "./seraphon";
 
+import {
+  battleFormations as slavesToDarknessbattleFormations,
+  artifactsOfPower as slavesToDarknessArtifactsOfPower,
+  heroicTraits as slavesToDarknessHeroicTraits,
+  spellLores as slavesToDarknessSpellLores,
+  prayerLores as slavesToDarknessPrayerLores,
+  manifestationLore as slavesToDarknessManifestationLore,
+  slavesToDarknessBattleProfiles as slavesToDarkness,
+} from "./slavesToDarkness";
+
 import { genericManifestationLores as generic } from "./generic";
 
 export const battletomeData = {
+  ossiarchBonereapers,
+  seraphon,
+  slavesToDarkness,
   skaven,
   stormcast,
   soulblightGravelords,
-  ossiarchBonereapers,
-  seraphon,
 };
 
 export const genericManifestationLores = generic;
@@ -63,6 +74,7 @@ export const factionSpecificManifestationLores = {
   soulblightGravelords: soulblightManifestationLore,
   ossiarchBonereapers: ossiarchManifestationLore,
   seraphon: seraphonManifestationLore,
+  slavesToDarkness: slavesToDarknessManifestationLore,
 };
 
 export const spellLores = {
@@ -71,6 +83,7 @@ export const spellLores = {
   soulblightGravelords: soulblightSpellLores,
   ossiarchBonereapers: ossiarchSpellLores,
   seraphon: seraphonSpellLores,
+  slavesToDarkness: slavesToDarknessSpellLores,
 };
 
 export const prayerLores = {
@@ -79,6 +92,7 @@ export const prayerLores = {
   soulblightGravelords: soulblightPrayerLores,
   ossiarchBonereapers: ossiarchPrayerLores,
   seraphon: seraphonPrayerLores,
+  slavesToDarkness: slavesToDarknessPrayerLores,
 };
 
 export const heroicTraits = {
@@ -87,6 +101,7 @@ export const heroicTraits = {
   soulblightGravelords: soulblightHeroicTraits,
   ossiarchBonereapers: ossiarchHeroicTraits,
   seraphon: seraphonHeroicTraits,
+  slavesToDarkness: slavesToDarknessHeroicTraits,
 };
 
 export const artifactsOfPower = {
@@ -95,6 +110,7 @@ export const artifactsOfPower = {
   soulblightGravelords: soulblightArtifactsOfPower,
   ossiarchBonereapers: ossiarchArtifactsOfPower,
   seraphon: seraphonArtifactsOfPower,
+  slavesToDarkness: slavesToDarknessArtifactsOfPower,
 };
 
 export const battleFormations = {
@@ -103,4 +119,5 @@ export const battleFormations = {
   soulblightGravelords: soulblightBattleFormations,
   ossiarchBonereapers: ossiarchBattleFormations,
   seraphon: seraphonBattleFormations,
+  slavesToDarkness: slavesToDarknessbattleFormations,
 };

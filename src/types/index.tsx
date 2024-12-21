@@ -12,7 +12,7 @@ export type Unit = UnitBase & {
   cannotBeReinforced?: boolean;
 };
 
-type subordinates = {
+export type subordinates = {
   keyword: string;
   max: number;
   hero?: boolean;

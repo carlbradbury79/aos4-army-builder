@@ -22,6 +22,7 @@ export const keywords = {
   cavalry: "cavalry",
   musician: "musician",
   standardBearer: "standardBearer",
+  beast: "beast",
 };
 
 export const armyTerms = {
