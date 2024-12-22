@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { ArmyContext } from "@/context/armyContext";
+import React, { useState } from "react";
+import { useStorage } from "@/hooks/useStorage";
 
 const ArmyName = () => {
-  const { saveArmyToLocalStorage } = useContext(ArmyContext);
+  const { saveArmyToLocalStorage } = useStorage();
   const [isSaving, setIsSaving] = useState(false);
 
   const handleSave = () => {

@@ -47,51 +47,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setFaction(faction);
   };
 
-  const saveArmyToLocalStorage = () => {
-    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-
-    // Check if an army with the same ID already exists
-    const armyIndex = savedArmies.findIndex(
-      (savedArmy: Army) => savedArmy.armyName === army.armyName
-    );
-
-    if (armyIndex !== -1) {
-      // Replace the existing army
-      savedArmies[armyIndex] = { ...army };
-    } else {
-      // Add the new army
-      const newArmy = { ...army, id: uuidv4() };
-      savedArmies.push(newArmy);
-    }
-
-    console.log("Saving...");
-    localStorage.setItem("savedArmies", JSON.stringify(savedArmies));
-  };
-
-  const loadArmyNamesFromLocalStorage = () => {
-    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-    setSavedArmies(savedArmies);
-  };
-
-  const loadArmyFromLocalStorage = (armyName: string) => {
-    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-    const army = savedArmies.find((army: Army) => army.armyName === armyName);
-    if (army) {
-      setArmy(army);
-      setFaction(army?.faction || "");
-      setArmyName(army?.armyName || "");
-    }
-  };
-
-  const removeArmyFromLocalStorage = (armyName: string) => {
-    const savedArmies = JSON.parse(localStorage.getItem("savedArmies") || "[]");
-    const updatedArmies = savedArmies.filter(
-      (savedArmy: Army) => savedArmy.armyName !== armyName
-    );
-    localStorage.setItem("savedArmies", JSON.stringify(updatedArmies));
-    loadArmyNamesFromLocalStorage();
-  };
-
   const availableFactions = Object.keys(battletomeData);
 
   const factionManifestationLore =
@@ -356,6 +311,10 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <ArmyContext.Provider
       value={{
+        setArmy,
+        setSavedArmies,
+        setFaction,
+        setArmyName,
         army,
         addRegiment,
         removeRegiment,
@@ -365,10 +324,7 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeUnit,
         getAvailableHeroes,
         getAvailableUnits,
-        saveArmyToLocalStorage,
-        loadArmyFromLocalStorage,
         faction,
-        setFaction,
         availableFactions,
         availableHeroicTraits,
         availableBattleFormations,
@@ -391,10 +347,8 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         addAuxUnit,
         removeAuxUnit,
         reinforceAuxUnit,
-        loadArmyNamesFromLocalStorage,
         armyName,
         AddNameToArmy,
-        removeArmyFromLocalStorage,
         savedArmies,
         addFactionToArmy,
         isArmyNameTaken,

@@ -50,6 +50,9 @@ export type Army = {
 
 export type ArmyContextType = {
   army: Army;
+  setArmy: (army: Army) => void;
+  setArmyName: (name: string) => void;
+  setSavedArmies: (armies: Army[]) => void;
   addRegiment: (regiment: Regiment) => void;
   removeRegiment: (regimentId: string) => void;
   addHero: (regimentId: string, hero: Hero) => void;
@@ -58,8 +61,6 @@ export type ArmyContextType = {
   removeUnit: (regimentId: string, unitId: string) => void;
   getAvailableHeroes: () => Hero[];
   getAvailableUnits: () => Unit[];
-  saveArmyToLocalStorage: () => void;
-  loadArmyFromLocalStorage: (armyId: string) => void;
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
@@ -92,10 +93,8 @@ export type ArmyContextType = {
   addAuxUnit: (unit: Unit) => void;
   removeAuxUnit: (unitId: string) => void;
   reinforceAuxUnit: (unitId: string, reinforce: boolean) => void;
-  loadArmyNamesFromLocalStorage: () => void;
   armyName: string;
   AddNameToArmy: (name: string) => void;
-  removeArmyFromLocalStorage: (armyId: string) => void;
   savedArmies: Army[];
   addFactionToArmy: (faction: Faction) => void;
   isArmyNameTaken: (name: string) => boolean;

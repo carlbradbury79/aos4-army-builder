@@ -4,21 +4,20 @@ import { useRouter } from "next/navigation";
 import { ArmyContext } from "@/context/armyContext";
 import { PageWrapper } from "./styles/pages.style";
 import { Army, Faction } from "@/types";
+import { useStorage } from "@/hooks/useStorage";
 
 const Home: React.FC = () => {
   const [selectedFaction, setSelectedFaction] = useState<Faction>();
   const [localArmyName, setLocalArmyName] = useState<string>("");
   const [armyNameTaken, setArmyNameTaken] = useState<boolean>(false);
-  const {
-    availableFactions,
-    loadArmyNamesFromLocalStorage,
-    removeArmyFromLocalStorage,
-    loadArmyFromLocalStorage,
-    savedArmies,
-    isArmyNameTaken,
-    addNameAndFaction,
-  } = useContext(ArmyContext);
+  const { availableFactions, savedArmies, isArmyNameTaken, addNameAndFaction } =
+    useContext(ArmyContext);
   const router = useRouter();
+  const {
+    loadArmyFromLocalStorage,
+    removeArmyFromLocalStorage,
+    loadArmyNamesFromLocalStorage,
+  } = useStorage();
 
   const armyNames = savedArmies.map((army: Army) => army.armyName);
 
