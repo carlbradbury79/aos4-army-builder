@@ -1,8 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
 
 const ArmyName = () => {
   const { saveArmyToLocalStorage } = useContext(ArmyContext);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    saveArmyToLocalStorage();
+    setTimeout(() => {
+      setIsSaving(false);
+    }, 2000);
+  };
 
   return (
     <div>
@@ -12,7 +21,8 @@ const ArmyName = () => {
         onChange={(e) => AddNameToArmy(e.target.value)}
         placeholder="Enter army name"
       /> */}
-      <button onClick={saveArmyToLocalStorage}>&#128190;</button>
+      <button onClick={() => handleSave()}>&#128190;</button>
+      {isSaving && <span>Saving...</span>}
     </div>
   );
 };
