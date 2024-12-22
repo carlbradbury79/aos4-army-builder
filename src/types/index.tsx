@@ -59,8 +59,6 @@ export type ArmyContextType = {
   removeHero: (regimentId: string) => void;
   addUnit: (regimentId: string, unit: Unit) => void;
   removeUnit: (regimentId: string, unitId: string) => void;
-  getAvailableHeroes: () => Hero[];
-  getAvailableUnits: () => Unit[];
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
@@ -89,7 +87,6 @@ export type ArmyContextType = {
     unitId: string,
     reinforce: boolean
   ) => void;
-  getAvailableSubordinateUnits: (hero: Hero, regimentId: string) => UnitTypes[];
   addAuxUnit: (unit: Unit) => void;
   removeAuxUnit: (unitId: string) => void;
   reinforceAuxUnit: (unitId: string, reinforce: boolean) => void;

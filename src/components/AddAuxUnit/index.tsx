@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { Unit as UnitType } from "@/types";
+import { useAvailability } from "@/hooks/useAvailablility";
 
 const AddAuxUnit: React.FC = () => {
-  const { addAuxUnit, getAvailableUnits } = useContext(ArmyContext);
+  const { getAvailableUnits } = useAvailability();
+  const { addAuxUnit } = useContext(ArmyContext);
   const [selectedUnitName, setSelectedUnitName] = useState<string | undefined>(
     undefined
   );

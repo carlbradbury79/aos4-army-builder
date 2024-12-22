@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { ArmyContext } from "@/context/armyContext";
 import { Hero as HeroType } from "@/types";
+import { useAvailability } from "@/hooks/useAvailablility";
 
 const AddHero: React.FC<{ regimentId: string }> = ({ regimentId }) => {
-  const { addHero, getAvailableHeroes } = useContext(ArmyContext);
+  const { getAvailableHeroes } = useAvailability();
+  const { addHero } = useContext(ArmyContext);
   const [selectedHeroName, setSelectedHeroName] = useState<string | undefined>(
     undefined
   );
