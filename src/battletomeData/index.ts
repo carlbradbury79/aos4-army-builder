@@ -56,12 +56,23 @@ import {
   slavesToDarknessBattleProfiles as slavesToDarkness,
 } from "./slavesToDarkness";
 
+import {
+  battleFormations as slavesToDarknessLegionOfTheFirstPrinceBattleFormations,
+  artifactsOfPower as slavesToDarknessLegionOfTheFirstPrinceArtifactsOfPower,
+  heroicTraits as slavesToDarknessLegionOfTheFirstPrinceHeroicTraits,
+  spellLores as slavesToDarknessLegionOfTheFirstPrinceSpellLores,
+  prayerLores as slavesToDarknessLegionOfTheFirstPrincePrayerLores,
+  manifestationLore as slavesToDarknessLegionOfTheFirstPrinceManifestationLores,
+  slavesToDarknessLegionOfTheFirstPrinceProfiles as slavesToDarknessLegionOfTheFirstPrince,
+} from "./slavesToDarknessLegionOfTheFirstPrince";
+
 import { genericManifestationLores as generic } from "./generic";
 
 export const battletomeData = {
   ossiarchBonereapers,
   seraphon,
   slavesToDarkness,
+  slavesToDarknessLegionOfTheFirstPrince,
   skaven,
   stormcast,
   soulblightGravelords,
@@ -75,6 +86,8 @@ export const factionSpecificManifestationLores = {
   ossiarchBonereapers: ossiarchManifestationLore,
   seraphon: seraphonManifestationLore,
   slavesToDarkness: slavesToDarknessManifestationLore,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrinceManifestationLores,
 };
 
 export const spellLores = {
@@ -84,6 +97,8 @@ export const spellLores = {
   ossiarchBonereapers: ossiarchSpellLores,
   seraphon: seraphonSpellLores,
   slavesToDarkness: slavesToDarknessSpellLores,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrinceSpellLores,
 };
 
 export const prayerLores = {
@@ -93,6 +108,8 @@ export const prayerLores = {
   ossiarchBonereapers: ossiarchPrayerLores,
   seraphon: seraphonPrayerLores,
   slavesToDarkness: slavesToDarknessPrayerLores,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrincePrayerLores,
 };
 
 export const heroicTraits = {
@@ -102,6 +119,8 @@ export const heroicTraits = {
   ossiarchBonereapers: ossiarchHeroicTraits,
   seraphon: seraphonHeroicTraits,
   slavesToDarkness: slavesToDarknessHeroicTraits,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrinceHeroicTraits,
 };
 
 export const artifactsOfPower = {
@@ -111,6 +130,8 @@ export const artifactsOfPower = {
   ossiarchBonereapers: ossiarchArtifactsOfPower,
   seraphon: seraphonArtifactsOfPower,
   slavesToDarkness: slavesToDarknessArtifactsOfPower,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrinceArtifactsOfPower,
 };
 
 export const battleFormations = {
@@ -120,4 +141,6 @@ export const battleFormations = {
   ossiarchBonereapers: ossiarchBattleFormations,
   seraphon: seraphonBattleFormations,
   slavesToDarkness: slavesToDarknessbattleFormations,
+  slavesToDarknessLegionOfTheFirstPrince:
+    slavesToDarknessLegionOfTheFirstPrinceBattleFormations,
 };

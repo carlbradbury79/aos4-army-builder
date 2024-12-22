@@ -136,23 +136,7 @@ export const slavesToDarknessHeroProfiles: Hero[] = [
     [takeOneRuinousChampion, takeAnySlavesToDarkness],
     [unique]
   ),
-  createHero(
-    "3",
-    units.belakorTheDarkMaster,
-    440,
-    1,
-    [takeOneRuinousChampion, takeEternus, takeAnySlavesToDarkness],
-    [unique]
-  ),
-  createHero(
-    "4",
-    units.centurionMarshal,
-    160,
-    1,
-    [takeOneMonster, takeAnyChaosLegionaires, takeAnyDaemon],
-    [],
-    [keywords.ruinousChampion]
-  ),
+
   createHero(
     "5",
     units.chaosLord,
@@ -180,15 +164,7 @@ export const slavesToDarknessHeroProfiles: Hero[] = [
     [],
     [keywords.ruinousChampion]
   ),
-  createHero("8", units.chaosSorcererLord, 120, 1, [
-    takeAnyWarriorsOfChaos,
-    takeOneRuinousChampion,
-    takeOneMonster,
-  ]),
-  createHero("9", units.daemonPrince, 290, 1, [
-    takeAnySlavesToDarkness,
-    takeOneRuinousChampion,
-  ]),
+
   createHero(
     "10",
     units.darkoathChieftain,
@@ -212,20 +188,7 @@ export const slavesToDarknessHeroProfiles: Hero[] = [
     takeOneMonster,
     takeOneOathsworn,
   ]),
-  createHero(
-    "13",
-    units.eternusBladeOfTheFirstPrince,
-    200,
-    1,
-    [
-      takeOneMonster,
-      takeAnyWarriorsOfChaos,
-      takeAnyChaosLegionaires,
-      takeAnyChaosFuries,
-    ],
-    [unique],
-    [units.eternusBladeOfTheFirstPrince]
-  ),
+
   createHero(
     "14",
     units.exaltedHeroOfChaos,
@@ -251,16 +214,8 @@ export const slavesToDarknessHeroProfiles: Hero[] = [
 export const slavesToDarknessUnitProfiles: Unit[] = [
   createUnit("20", units.chaosChariot, 80, 1, [keywords.warriorsOfChaos]),
   createUnit("21", units.chaosChosen, 260, 5, [keywords.warriorsOfChaos]),
-  createUnit("22", units.chaosFuries, 160, 6),
   createUnit("23", units.chaosKnights, 250, 5, [keywords.warriorsOfChaos]),
-  createUnit(
-    "24",
-    units.chaosLegionaires,
-    80,
-    8,
-    [keywords.chaosLegionaires],
-    true
-  ),
+
   createUnit("25", units.chaosSpawn, 60, 1, [beast]),
   createUnit("26", units.chaosWarrirors, 200, 10, [keywords.warriorsOfChaos]),
   createUnit("27", units.darkoathFellriders, 150, 5, [keywords.darkoath]),
@@ -281,10 +236,94 @@ export const slavesToDarknessUnitProfiles: Unit[] = [
   createUnit("36", units.raptoryx, 100, 6, [beast]),
   createUnit("37", units.slaughterbrute, 220, 1, [monster, keywords.daemon]),
   createUnit("38", units.theOathswornKin, 100, 5, [keywords.oathsworn]),
+];
+
+export const slavesToDarknessFirstPrinceHeroes: Hero[] = [
+  createHero(
+    "3",
+    units.belakorTheDarkMaster,
+    440,
+    1,
+    [takeOneRuinousChampion, takeEternus, takeAnySlavesToDarkness],
+    [unique]
+  ),
+  createHero("9", units.daemonPrince, 290, 1, [
+    takeAnySlavesToDarkness,
+    takeOneRuinousChampion,
+  ]),
+  createHero(
+    "4",
+    units.centurionMarshal,
+    160,
+    1,
+    [takeOneMonster, takeAnyChaosLegionaires, takeAnyDaemon],
+    [],
+    [keywords.ruinousChampion]
+  ),
+  createHero("8", units.chaosSorcererLord, 120, 1, [
+    takeAnyWarriorsOfChaos,
+    takeOneRuinousChampion,
+    takeOneMonster,
+  ]),
+  createHero(
+    "13",
+    units.eternusBladeOfTheFirstPrince,
+    200,
+    1,
+    [
+      takeOneMonster,
+      takeAnyWarriorsOfChaos,
+      takeAnyChaosLegionaires,
+      takeAnyChaosFuries,
+    ],
+    [unique],
+    [units.eternusBladeOfTheFirstPrince]
+  ),
+];
+
+export const slavesToDarknessFirstPrinceUnits: Unit[] = [
+  createUnit("22", units.chaosFuries, 120, 6),
+  createUnit(
+    "24",
+    units.chaosLegionaires,
+    80,
+    8,
+    [keywords.chaosLegionaires],
+    true
+  ),
   createUnit("39", units.varanguard, 330, 3, [keywords.warriorsOfChaos]),
+];
+
+export const slavesToDarknessDaemonUnits: Unit[] = [
+  createUnit("40", units.legionOfTheFirstPrinceBeastsOfNurgle, 150, 1, [
+    keywords.daemon,
+  ]),
+  createUnit("41", units.legionOfTheFirstPrinceBloodcrushers, 200, 3, [
+    keywords.daemon,
+  ]),
+  createUnit("42", units.legionOfTheFirstPrinceBloodletters, 200, 10, [
+    keywords.daemon,
+  ]),
+  createUnit("43", units.legionOfTheFirstPrinceFiends, 150, 3, [
+    keywords.daemon,
+  ]),
+  createUnit("44", units.legionOfTheFirstPrinceFlamersOfTzeentch, 120, 3, [
+    keywords.daemon,
+  ]),
+  createUnit("45", units.legionOfTheFirstPrinceHellflayers, 160, 1, [
+    keywords.daemon,
+  ]),
+  createUnit("46", units.legionOfTheFirstPrincePlaguebearers, 140, 10, [
+    keywords.daemon,
+  ]),
+  createUnit("47", units.legionOfTheFirstPrinceScreamersOfTzeentch, 100, 3, [
+    keywords.daemon,
+  ]),
 ];
 
 export const slavesToDarknessBattleProfiles: UnitTypes[] = [
   ...slavesToDarknessHeroProfiles,
+  ...slavesToDarknessFirstPrinceHeroes,
   ...slavesToDarknessUnitProfiles,
+  ...slavesToDarknessFirstPrinceUnits,
 ];
