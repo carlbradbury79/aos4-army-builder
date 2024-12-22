@@ -57,8 +57,6 @@ export type ArmyContextType = {
   removeRegiment: (regimentId: string) => void;
   addHero: (regimentId: string, hero: Hero) => void;
   removeHero: (regimentId: string) => void;
-  addUnit: (regimentId: string, unit: Unit) => void;
-  removeUnit: (regimentId: string, unitId: string) => void;
   faction: string;
   setFaction: (faction: string) => void;
   availableFactions: string[];
@@ -82,11 +80,6 @@ export type ArmyContextType = {
   manifestationLoreSelected: string | undefined;
   setArmyField: (key: string, value: string | undefined) => void;
   totalArmyPoints: number;
-  reinforceUnit: (
-    regimentId: string,
-    unitId: string,
-    reinforce: boolean
-  ) => void;
   addAuxUnit: (unit: Unit) => void;
   removeAuxUnit: (unitId: string) => void;
   reinforceAuxUnit: (unitId: string, reinforce: boolean) => void;

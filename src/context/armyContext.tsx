@@ -147,17 +147,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const addUnit = (regimentId: string, unit: Unit) => {
-    const unitWithUniqueId = { ...unit, id: uuidv4() };
-    setArmy({
-      ...army,
-      regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId && regiment.hero
-          ? { ...regiment, units: [...regiment.units, unitWithUniqueId] }
-          : regiment
-      ),
-    });
-  };
   const addAuxUnit = (unit: Unit) => {
     const unitWithUniqueId = { ...unit, id: uuidv4() };
     setArmy({
@@ -186,46 +175,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
   };
 
-  const removeUnit = (regimentId: string, unitId: string) => {
-    setArmy({
-      ...army,
-      regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId
-          ? {
-              ...regiment,
-              units: regiment.units.filter((unit) => unit.id !== unitId),
-            }
-          : regiment
-      ),
-    });
-  };
-
-  const reinforceUnit = (
-    regimentId: string,
-    unitId: string,
-    reinforce: boolean
-  ) => {
-    setArmy({
-      ...army,
-      regiments: army.regiments.map((regiment) =>
-        regiment.id === regimentId
-          ? {
-              ...regiment,
-              units: regiment.units.map((unit) => {
-                const quantity = reinforce
-                  ? unit.quantity * 2
-                  : unit.quantity / 2;
-                const cost = reinforce ? unit.cost * 2 : unit.cost / 2;
-                return unit.id === unitId
-                  ? { ...unit, isReinforced: reinforce, quantity, cost }
-                  : unit;
-              }),
-            }
-          : regiment
-      ),
-    });
-  };
-
   const totalArmyPoints =
     army.regiments.reduce(
       (acc, regiment) =>
@@ -247,8 +196,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeRegiment,
         addHero,
         removeHero,
-        addUnit,
-        removeUnit,
         faction,
         availableFactions,
         availableHeroicTraits,
@@ -267,7 +214,6 @@ const ArmyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         manifestationLoreSelected,
         setArmyField,
         totalArmyPoints,
-        reinforceUnit,
         addAuxUnit,
         removeAuxUnit,
         reinforceAuxUnit,

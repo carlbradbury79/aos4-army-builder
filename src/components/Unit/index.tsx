@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { ArmyContext } from "@/context/armyContext";
+import React from "react";
 import { canBeReinforced } from "@/helpers/canBeReinforced";
 import { Unit as UnitType } from "@/types";
 import { InlineButton, CloseButton } from "@/app/styles/buttons.style";
 import { UnitName, UnitClose } from "./index.style";
+import { useUnit } from "@/hooks/useUnit";
 
 type UnitProps = {
   unit: UnitType;
@@ -11,7 +11,7 @@ type UnitProps = {
 };
 
 const Unit: React.FC<UnitProps> = ({ unit, regimentId }) => {
-  const { removeUnit, reinforceUnit } = useContext(ArmyContext);
+  const { removeUnit, reinforceUnit } = useUnit();
   return (
     <UnitName key={unit.id}>
       <div>
